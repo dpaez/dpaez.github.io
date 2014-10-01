@@ -85,6 +85,7 @@ article h2
   width: 50%
   font-size: 3em
   margin: 0
+  display: inline-block
 
 ul
   list-style: none
@@ -102,7 +103,7 @@ li:nth-child(2n)
   background-color: BACKGROUND
   color: NAV
 
-article#projects
+article#projects, article#contact
   padding: 0
 
 article#projects h2
@@ -170,6 +171,21 @@ footer
   font-size: 3em
   margin-bottom: 0
 
+.logo
+  position: absolute
+  right: 0
+  margin:0
+  display: inline-block
+  font-family: "AmsterdamSuperstar", "Lucida Console", Monaco, monospace
+  font-size: 2em
+  width: 3em
+  height: 3em
+  color: #316dd4
+  cursor: pointer
+  opacity: 0.6
+  transition: all 0.3s
+
+
 .title h1, .title p
   text-align: center
 
@@ -179,7 +195,6 @@ footer
   vertical-align: middle
   z-index: 10
   transition: 200ms ease
-
 
 .section-link:hover
   background-color: KAN
@@ -209,6 +224,10 @@ footer
   margin-bottom: 1em
 
 /** Effects and animations **/
+
+.lights
+  opacity:1
+  transition: all 0.3ms ease-in
 
 .black-box
   background-color: KAN
@@ -249,17 +268,19 @@ footer
 
 .extendKan
   width: 50%
-  //transform: 2000ms ease-in
 
 .removeNone
   width: 0
-  //transform: 2000ms ease
 
 /** Media Queries **/
 
 // Small devices
 
 @media screen and (min-device-width:320px) and (max-device-width:480px)
+  .logo
+    display: none
+    visibility: hidden
+
   article h2
     font-size: 1.5em
 
@@ -289,6 +310,9 @@ footer
 
 
 @media screen and (min-device-width:320px) and (max-device-height:480px)
+  .logo
+    display: none
+    visibility: hidden
 
   .sections-links
     height: 170px
@@ -305,7 +329,7 @@ footer
   article:not(#landing)
     height: 100%
 
-  section:not(#projects-items), li > *
+  section:not(.items), li > *
     text-align: justify
     padding: 0 20px
 
@@ -316,7 +340,7 @@ footer
   article:not(#landing)
     height: 100%
 
-  section:not(#projects-items), li h3, li p
+  section:not(.items), li h3, li p
     width: 800px
     text-align: justify
     margin-left: auto
@@ -329,7 +353,7 @@ footer
   article:not(#landing)
     height: 100%
 
-  section:not(#projects-items), li h3, li p
+  section:not(.items), li h3, li p
     width: 800px
     text-align: justify
     margin-left: auto

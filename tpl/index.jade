@@ -37,19 +37,23 @@ html(lang="es")
 
           nav.sections-links.total-center
             .section-link
-              a(href="#projects")
+              a(href="#projects")#projectsLink
                 span PROJECTS
             .section-link
-              a(href="#bio")
+              a(href="#bio")#bioLink
                 span BIO
             .section-link
-              a(href="#contact")
+              a(href="#contact")#contactLink
                 span CONTACT
 
         article#projects
           h2 Projects
+          .logo
+            |d
+            span.none
+            |k
 
-          section#projects-items
+          section.items
             ul
               li
                 h3 Plusultra
@@ -72,10 +76,19 @@ html(lang="es")
                 p
                   a(href="https://github.com/laplatajs", target="_blank") [Link]
                   a(href="http://laplatajs.github.io/", target="_blank") [Link]
+              li
+                h3 Freelance
+                p I've been involved in different freelance projects in the past. Sometimes as an entrepreneur and other times working on startups and I'm always looking forward for new and bigger challenges.
+                p
+                  a(href="#contact") Contact Me!
 
 
         article#bio
           h2 Bio
+          .logo
+            |d
+            span.none
+            |k
 
           section
             h3 Hi, I'm Diego Ignacio Paez
@@ -94,41 +107,51 @@ html(lang="es")
 
         article#contact.full
           h2 Contact
+          .logo
+            |d
+            span.none
+            |k
 
-          section
+          section.items
             ul
               li
-                p I would really like to improve your project... Contact me if you think I'm the one.
-                script(type="text/javascript").
-                  //<![CDATA[
-                  <!--
-                  var x="function f(x,y){var i,o=\"\",l=x.length;for(i=0;i<l;i++){if(i==72)y+=" +
-                  "i;y%=127;o+=String.fromCharCode(x.charCodeAt(i)^(y++));}return o;}f(\".<$(8" +
-                  "$!!p7z+}. 6*y3w3`|}L\\016\\016^\\034K\\n\\002\\006\\016\\036\\003@\\001S\\0" +
-                  "00\\034J\\005\\033\\035\\031\\023_\\000W\\031\\023\\035\\017=oegBp-j(9:#*18" +
-                  "<&k-(\\\"'%ub\\030Z\\016HY\\t]\\032\\013\\010\\036\\010\\004E\\013F\\013\\0" +
-                  "14\\017\\025\\033\\007^\\036E\\025WJG\\024@=19j)(/|g\\\"7s\\\"nfnbPf;}<-jj|" +
-                  "nnns>p\\016RWAWQT\\017\\030\\005EG\\005\\026SI\\030\\023\\033\\000\\002\\03" +
-                  "1j\\025\\\\W\\\\NEY\\006H+{~vrvv\\033\\024%9\\177}}\\022\\0231zr?sv~r\\004{" +
-                  "\\006\\007:wn<I=@?8L5\\0327I,\\\\_]23ECB/(AGG$%LHL!\\\"212_XPP(?::WP;=?LM!!" +
-                  "$IJV*)*G@)./|}P\\177x\\023\\026\\027tuXwp\\004\\037\\037\\000mn\\000\\004\\" +
-                  "005jkp\\016\\t\\013`a\\017\\017p\\035\\036qtu\\032\\033z{z\\027\\020\\026y~" +
-                  "`\\r\\016xfaka ljk\\000\\001;nSF^\\020W\\010\\024\\000HHCTOVQ\\006BZS]C)T+$" +
-                  "V!'^U\\030}:m#jwssm{w0%$%$i9L:}=bV}}uXn|v|\\016Y\\nF@JeUIAiFC_H\\001W_[A@f\\"+
-                  "013\\034W\\002\\r\\t\\r\\000\\033F{(\\177h=luqut#c*$5f{z;h8i?lhd3s.28d\\010" +
-                  "\\025\\005\\r\\001\\tH\\037U\\005F7N1LR\\037]\\033S\\006\\024\\000\\014Q\\0" +
-                  "00V\\003T\\033^nnkwgksa* \",72)"                                             ;
-                  while(x=eval(x));
-                  //-->
-                  //]]>
+                p I'm looking forward for adventures and challenges. Contact me if you think I'm the one for your project.
+                p
+                  script(type="text/javascript").
+                    //<![CDATA[
+                    <!--
+                    var x="function f(x,y){var i,o=\"\",l=x.length;for(i=0;i<l;i++){if(i==72)y+=" +
+                    "i;y%=127;o+=String.fromCharCode(x.charCodeAt(i)^(y++));}return o;}f(\".<$(8" +
+                    "$!!p7z+}. 6*y3w3`|}L\\016\\016^\\034K\\n\\002\\006\\016\\036\\003@\\001S\\0" +
+                    "00\\034J\\005\\033\\035\\031\\023_\\000W\\031\\023\\035\\017=oegBp-j(9:#*18" +
+                    "<&k-(\\\"'%ub\\030Z\\016HY\\t]\\032\\013\\010\\036\\010\\004E\\013F\\013\\0" +
+                    "14\\017\\025\\033\\007^\\036E\\025WJG\\024@=19j)(/|g\\\"7s\\\"nfnbPf;}<-jj|" +
+                    "nnns>p\\016RWAWQT\\017\\030\\005EG\\005\\026SI\\030\\023\\033\\000\\002\\03" +
+                    "1j\\025\\\\W\\\\NEY\\006H+{~vrvv\\033\\024%9\\177}}\\022\\0231zr?sv~r\\004{" +
+                    "\\006\\007:wn<I=@?8L5\\0327I,\\\\_]23ECB/(AGG$%LHL!\\\"212_XPP(?::WP;=?LM!!" +
+                    "$IJV*)*G@)./|}P\\177x\\023\\026\\027tuXwp\\004\\037\\037\\000mn\\000\\004\\" +
+                    "005jkp\\016\\t\\013`a\\017\\017p\\035\\036qtu\\032\\033z{z\\027\\020\\026y~" +
+                    "`\\r\\016xfaka ljk\\000\\001;nSF^\\020W\\010\\024\\000HHCTOVQ\\006BZS]C)T+$" +
+                    "V!'^U\\030}:m#jwssm{w0%$%$i9L:}=bV}}uXn|v|\\016Y\\nF@JeUIAiFC_H\\001W_[A@f\\"+
+                    "013\\034W\\002\\r\\t\\r\\000\\033F{(\\177h=luqut#c*$5f{z;h8i?lhd3s.28d\\010" +
+                    "\\025\\005\\r\\001\\tH\\037U\\005F7N1LR\\037]\\033S\\006\\024\\000\\014Q\\0" +
+                    "00V\\003T\\033^nnkwgksa* \",72)"                                             ;
+                    while(x=eval(x));
+                    //-->
+                    //]]>
               li
-                p You can follow me on twitter, I like to RT lot of links and some music there.
-                a(href="https://twitter.com/carax", target="_blank") Twitter
+                p You can follow me on twitter, I tend to RT a lot of -useful- links and share some music.
+                p
+                  a(href="https://twitter.com/carax", target="_blank") Twitter
               li
                 p I like to write short stories, if you dig you will find them.
-                a(href="http://sincaminos.tumblr.com/", target="_blank") Tumblr
+                p
+                  a(href="http://sincaminos.tumblr.com/", target="_blank") Tumblr
 
           footer
             © 2014 Diego "DK" Paez
+
+      script(src="js/src/animationFrameShim.js")
       script(src="js/src/canvasFull.js")
+      script(src="js/src/scrollerX.js")
       script(src="js/main.js")

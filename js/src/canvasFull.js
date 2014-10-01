@@ -1,11 +1,23 @@
 var canvasFull = (function( window, document ){
+
+  var STROKECOLOR = '#8c918d';
   var sizeX = 1920;
   var sizeY = 1080;
+  var currentScale = 1;
+  var scaleFactor = 0.45;
+  var degreeStep = 5;
+  var degreeLimit = 65;
+  var currentDegree = 0;
+  var STOP = false;
+  var startTime;
+  var callbackFn;
+  var ctx;
+  var currentAnimation = drawAnimation;
 
   var drawIntro = function( ctx ){
     var maxX = window.innerWidth;
     var maxY = window.innerHeight;
-    ctx.strokeStyle = '#8c918d';
+    ctx.strokeStyle = STROKECOLOR;
     ctx.beginPath();
     ctx.moveTo( 0, 0 );
     ctx.lineTo( maxX, maxY );
@@ -17,10 +29,118 @@ var canvasFull = (function( window, document ){
     ctx.stroke();
   };
 
-  var start = function( canvas, drawing ){
-    var ctx;
+
+  var drawAnimation = function( ctx ){
+
+    var newScale = currentScale - (currentScale * scaleFactor);
+    currentScale = newScale;
+    var maxX = this.animationMaxX - (this.animationMaxX * scaleFactor) ;
+    //var maxX = this.canvas.height * newScale;
+    var diffX = (this.canvas.width - maxX)/2;
+    maxX += diffX;
+    var maxY = this.animationMaxY - (this.animationMaxY * scaleFactor) ;
+    //var maxY = this.canvas.width * newScale;
+    var diffY = (this.canvas.height - maxY)/2;
+    maxY += diffY;
+    this.newZeroX = diffX;
+    this.newZeroY = diffY;
+
+
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    ctx.beginPath();
+    ctx.moveTo( newZeroX, newZeroY );
+    ctx.lineTo( maxX, maxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( maxX, newZeroY );
+    ctx.lineTo( newZeroX, maxY );
+    ctx.stroke();
+
+    this.animationMaxX = maxX;
+    this.animationMaxY = maxY;
+  };
+
+  var drawRotateAnimation = function( ctx ){
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    //ctx.rotate( -65 * Math.PI / 180 );
+    currentDegree += degreeStep;
+    if ( currentDegree > degreeLimit ){
+      degreeLimit = 65;
+      currentDegree = 0;
+      STOP = true;
+      return;
+    }
+    ctx.translate(this.canvas.width/2, this.canvas.height/2);
+
+    ctx.rotate( -degreeStep * Math.PI / 180 );
+
+    ctx.translate(-this.canvas.width/2, -this.canvas.height/2);
+
+    ctx.beginPath();
+    ctx.moveTo( this.newZeroX, this.newZeroY );
+    ctx.lineTo( this.animationMaxX, this.animationMaxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( this.animationMaxX, this.newZeroY );
+    ctx.lineTo( this.newZeroX, this.animationMaxY );
+    ctx.stroke();
+
+  };
+
+  var drawRestoreAnimation = function(){
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    var newScale = currentScale + (currentScale * scaleFactor);
+    currentScale = newScale;
+    var maxX = this.animationMaxX + (this.animationMaxX * scaleFactor) ;
+    //var maxX = this.canvas.height * newScale;
+    var diffX = (this.canvas.width - maxX)/2;
+    maxX += diffX;
+    var maxY = this.animationMaxY + (this.animationMaxY * scaleFactor) ;
+    //var maxY = this.canvas.width * newScale;
+    var diffY = (this.canvas.height - maxY)/2;
+    maxY += diffY;
+    this.newZeroX = diffX;
+    this.newZeroY = diffY;
+
+    ctx.beginPath();
+    ctx.moveTo( newZeroX, newZeroY );
+    ctx.lineTo( maxX, maxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( maxX, newZeroY );
+    ctx.lineTo( newZeroX, maxY );
+    ctx.stroke();
+
+    this.animationMaxX = maxX;
+    this.animationMaxY = maxY;
+  };
+
+  var cleanAnimation = function( ctx ){
+    currentScale = 1;
+    degreeLimit = degreeLimit + currentDegree;
+    if ( degreeLimit > 360 ){
+      degreeLimit = 65;
+      currentDegree = 0;
+    }
+  };
+
+  var start = function( canvas, element ){
 
     window.addEventListener('resize', resize.bind( this ), false);
+
+    if ( element.length ){
+      for(var j=0;j<element.length;j++){
+        element[ j ].addEventListener('mouseover', preAnimate.bind(this), false);
+      }
+    }else{
+      element.addEventListener('mouseover', preAnimate.bind(this), false);
+    }
 
     if ( undefined === typeof canvas ){
       console.error( 'A canvas element is required.' );
@@ -31,24 +151,19 @@ var canvasFull = (function( window, document ){
 
     ctx = canvas.getContext('2d');
     if ( canvas.getContext ){
-      this.ctx = ctx;
-      // this.draw( drawing );
       resize();
 
     } else {
       console.error( 'No canvas context obtained.' );
     }
-
   };
 
   var resize = function(){
-    console.log( 'resizing canvas' );
+
     var e = document.documentElement,
         g = document.getElementsByTagName('article')[0],
         x = window.innerWidth || e.clientWidth || g.clientWidth,
         y = window.innerHeight|| e.clientHeight || g.clientHeight;
-
-    //var cc = document.getElementById("canvasWrapper");
 
     var cx,cy;                  //The size of the canvas-Element
     var cleft=0;                //Offset to the left border (to center the canvas-element, if there are borders on the left&right)
@@ -57,27 +172,65 @@ var canvasFull = (function( window, document ){
     if ( window.outerWidth ){
       cleft = ( x - window.outerWidth )/2;
     }
-    /*if(x/y > sizeX/sizeY){      //x-diff > y-diff   ==> black borders left&right
-        cx = (y*sizeX/sizeY);
-        cleft = (x-cx)/2;
-    }else{                      //y-diff > x-diff   ==> black borders top&bottom
-        cy = (x*sizeY/sizeX);
-    }*/
-    //cc.setAttribute("style", "width:"+x+"px;height:"+y+"px;");                                          //canvas-content = fullscreen
-    //this.canvas.setAttribute("style", "width:"+cx+"px;height:"+cy+"px;position: absolute; left:"+cleft+"px");    //canvas: 16:9, as big as possible, horizintally centered
+
     this.canvas.width = cx;
     this.canvas.height = cy;
-    //this.canvas.setAttribute("style", "position: absolute; left:0; top: 0; bottom:0; right:0;width: 100%;height: 100%;");    //canvas: 16:9, as big as possible, horizintally centered
-    //this.canvas.setAttribute("style", "left:"+cleft+"px");    //canvas: 16:9, as big as possible, horizintally centered
 
-    // TODO: separate this call, trigger resized local event
-    drawIntro( this.ctx );
+    // TODO: separate this call, maybe trigger resized local event
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    cleanAnimation();
+    drawIntro( ctx );
+  }
+
+  var min = function( a, b ) {
+    return a<b?a:b;
+  }
+
+  var preAnimate = function(){
+    startTime = Date.now();
+    ctx.strokeStyle = STROKECOLOR;
+    this.animationMaxX = this.canvas.width;
+    this.animationMaxY = this.canvas.height;
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    currentAnimation = drawAnimation;
+    callbackFn = rotateAnimation;
+    animate();
+  }
+
+  var rotateAnimation = function(){
+    startTime = Date.now();
+    currentAnimation = drawRotateAnimation;
+    callbackFn = restoreAnimation;
+    animate();
+  }
+
+  var restoreAnimation = function(){
+    startTime = Date.now();
+    currentAnimation = drawRestoreAnimation;
+    callbackFn = cleanAnimation;
+    animate();
+  }
+
+  var animate = function(){
+
+    var currentTime = Date.now(),
+        time = min(1, ((currentTime - startTime) / 600));
+
+    currentAnimation( ctx );
+
+    if ( (time < 1) && (!STOP) ){
+      requestAnimationFrame( animate.bind(this) );
+    }
+    else{
+      STOP = false;
+      callbackFn( ctx );
+    }
   }
 
 
   return {
-    init: function( element, drawing ){
-      start( element, drawing );
+    init: function( canvas, element ){
+      start( canvas, element );
     }
   }
 
