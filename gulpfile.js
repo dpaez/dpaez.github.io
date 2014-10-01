@@ -94,6 +94,8 @@ gulp.task('compressCSS', function() {
 gulp.task('watch', function() {
   gulp.watch(paths.JADE, ['jade']);
   gulp.watch(paths.STYL, ['stylus']);
+  gulp.watch(paths.JSALL, ['concatJS']);
+  gulp.watch(paths.CSSALL, ['concatCSS']);
 });
 
 gulp.task( 'build', ['jade', 'stylus', 'production'] );

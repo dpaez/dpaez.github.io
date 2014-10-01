@@ -307,7 +307,7 @@ footer {
     visibility: hidden;
   }
 }
-@media screen and (min-device-width: 320px) and (max-device-height: 480px) {
+@media screen and (max-height: 360px) {
   .logo {
     display: none;
     visibility: hidden;
@@ -321,8 +321,14 @@ footer {
     line-height: 40px;
     font-size: 2em;
   }
+  .kan1,
+  .kan2,
+  .none {
+    height: 1em;
+    margin: 0;
+  }
 }
-@media screen and (min-width: 750px) and (max-width: 900px) {
+@media screen and (min-width: 750px) and (max-width: 900px) and (min-height: 820px) {
   article:not(#landing) {
     height: 100%;
   }
@@ -335,7 +341,7 @@ footer {
     width: 55%;
   }
 }
-@media screen and (min-width: 901px) and (max-width: 1350px) {
+@media screen and (min-width: 901px) and (max-width: 1350px) and (min-height: 820px) {
   article:not(#landing) {
     height: 100%;
   }
@@ -351,7 +357,7 @@ footer {
     width: 40%;
   }
 }
-@media screen and (min-width: 1351px) {
+@media screen and (min-width: 1351px) and (min-height: 820px) {
   article:not(#landing) {
     height: 100%;
   }

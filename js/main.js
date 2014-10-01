@@ -17,7 +17,6 @@
   var posBio = bio.getBoundingClientRect();
   var posContact = contact.getBoundingClientRect();
 
-
   // canvas stuff
   cfIntro = cf.init( cIntro, sectionLinks );
 
