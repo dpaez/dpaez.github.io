@@ -1,15 +1,21 @@
-(function( cf, sx  ){
+/*! main.js v1.0.0 | MIT License | DK Official Site */
+
+;(function( cf, sx  ){
   var cIntro = document.getElementById( 'intro' );
   var logo = document.querySelectorAll( '.logo' );
   var sectionLinks = document.querySelectorAll( '.section-link' );
   var projects = document.getElementById( 'projects' );
   var pLink = document.getElementById( 'projectsLink' );
-  var bLink = document.getElementById( 'bioLink' );
-  var cLink = document.getElementById( 'contactLink' );
   var bio = document.getElementById( 'bio' );
+  var bLink = document.getElementById( 'bioLink' );
   var contact = document.getElementById( 'contact' );
+  var cLink = document.getElementById( 'contactLink' );
   var articles = [ projects, bio, contact ];
   var cfIntro;
+
+  var posProjects = projects.getBoundingClientRect();
+  var posBio = bio.getBoundingClientRect();
+  var posContact = contact.getBoundingClientRect();
 
 
   // canvas stuff
@@ -59,25 +65,22 @@
 
   projectsLink.addEventListener('click', function(e){
     //e.preventDefault();
-    var pos = projects.getBoundingClientRect();
-    console.log( 'pos to:', pos.top )
-    sx.scrollX( pos.top, 900 );
+    console.log( 'pos to:', posProjects.top )
+    sx.scrollX( posProjects.top, 900 );
 
   });
 
   bioLink.addEventListener('click', function(e){
     //e.preventDefault();
-    var pos = bio.getBoundingClientRect();
-    console.log( 'pos to:', pos.top )
-    sx.scrollX( pos.top, 900 );
+    console.log( 'pos to:', posBio.top )
+    sx.scrollX( posBio.top, 900 );
 
   });
 
   contactLink.addEventListener('click', function(e){
     //e.preventDefault();
-    var pos = contact.getBoundingClientRect();
-    console.log( 'pos to:', pos.top )
-    sx.scrollX( pos.top, 900 );
+    console.log( 'pos to:', posContact.top )
+    sx.scrollX( posContact.top, 900 );
 
   });
 

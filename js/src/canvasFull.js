@@ -1,8 +1,8 @@
+/*! canvasFull.js v1.0.0 | MIT License | DK Official Site */
+
 var canvasFull = (function( window, document ){
 
   var STROKECOLOR = '#8c918d';
-  var sizeX = 1920;
-  var sizeY = 1080;
   var currentScale = 1;
   var scaleFactor = 0.45;
   var degreeStep = 5;
@@ -162,8 +162,8 @@ var canvasFull = (function( window, document ){
 
     var e = document.documentElement,
         g = document.getElementsByTagName('article')[0],
-        x = window.innerWidth || e.clientWidth || g.clientWidth,
-        y = window.innerHeight|| e.clientHeight || g.clientHeight;
+        x = e.clientWidth || g.clientWidth || window.innerWidth,
+        y = e.clientHeight || g.clientHeight || window.innerHeight;
 
     var cx,cy;                  //The size of the canvas-Element
     var cleft=0;                //Offset to the left border (to center the canvas-element, if there are borders on the left&right)
