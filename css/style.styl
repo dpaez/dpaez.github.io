@@ -330,7 +330,12 @@ footer
 
 // Bigger devices below
 
-@media screen and (min-width:750px) and (max-width:900px) and (min-height:820px)
+@media screen and (min-height:750px)
+  article:not(#landing)
+    height: 100%
+
+//@media screen and (min-width:750px) and (max-width:900px) and (min-height:820px)
+@media screen and (min-width:750px) and (max-width:900px)
   article:not(#landing)
     height: 100%
 
@@ -341,7 +346,7 @@ footer
   .sections-links
     width: 55%
 
-@media screen and (min-width:901px) and (max-width:1350px) and (min-height:820px)
+@media screen and (min-width:901px) and (max-width:1350px) and (min-height:800px)
   article:not(#landing)
     height: 100%
 
@@ -354,7 +359,7 @@ footer
   .sections-links
     width: 40%
 
-@media screen and (min-width:1351px) and (min-height:820px)
+@media screen and (min-width:1351px) and (min-height:800px)
   article:not(#landing)
     height: 100%
 
