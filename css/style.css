@@ -119,7 +119,8 @@ article#contact h2 {
   width: 100%;
 }
 footer {
-  position: absolute;
+  display: table-row;
+  height: 1px;
   bottom: 0;
   text-align: center;
   z-index: 10;
@@ -328,9 +329,18 @@ footer {
     margin: 0;
   }
 }
-@media screen and (min-height: 750px) {
-  article:not(#landing) {
+@media screen and (min-height: 680px) {
+  #bio,
+  #contact {
     height: 100%;
+  }
+  section:not(.items),
+  li h3,
+  li p {
+    width: 700px;
+    text-align: justify;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 @media screen and (min-width: 750px) and (max-width: 900px) {
