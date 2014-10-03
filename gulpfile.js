@@ -66,7 +66,7 @@ gulp.task('concatJS', function() {
 });
 
 gulp.task('concatCSS', function () {
-  gulp.src( paths.CSSALL )
+  gulp.src( ['./css/main.css', './style.css'] )
     .pipe( concatCss('app.css') )
     .pipe( gulp.dest(paths.PUBLIC) );
 });

@@ -63,6 +63,9 @@ canvas {
   z-index: 1;
 }
 article:not(#landing) {
+  padding: 0;
+}
+#bio section {
   padding: 20px;
 }
 article,
@@ -83,6 +86,7 @@ article h2 {
   font-size: 3em;
   margin: 0;
   display: inline-block;
+  height: 2em;
 }
 ul {
   list-style: none;
@@ -100,13 +104,9 @@ li:nth-child(2n) {
   background-color: #e5e5e5;
   color: NAV;
 }
-article#projects,
-article#contact {
-  padding: 0;
-}
-article#projects h2,
-article#contact h2 {
+article h2 {
   padding: 20px;
+  line-height: 1;
 }
 /** Position **/
 .wrap {
@@ -178,7 +178,7 @@ footer {
   font-family: "AmsterdamSuperstar", "Lucida Console", Monaco, monospace;
   font-size: 2em;
   width: 3em;
-  height: 3em;
+  height: 2em;
   color: #316dd4;
   cursor: pointer;
   opacity: 0.6;
@@ -334,6 +334,8 @@ footer {
   #contact {
     height: 100%;
   }
+}
+@media screen and (min-device-width: 700px) {
   section:not(.items),
   li h3,
   li p {

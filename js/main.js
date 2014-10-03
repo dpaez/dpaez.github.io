@@ -65,21 +65,21 @@
   projectsLink.addEventListener('click', function(e){
     //e.preventDefault();
     console.log( 'pos to:', posProjects.top )
-    sx.scrollX( posProjects.top, 900 );
+    sx.scrollX( Math.abs(posProjects.top), 900 );
 
   });
 
   bioLink.addEventListener('click', function(e){
     //e.preventDefault();
     console.log( 'pos to:', posBio.top )
-    sx.scrollX( posBio.top, 900 );
+    sx.scrollX( Math.abs(posBio.top), 900 );
 
   });
 
   contactLink.addEventListener('click', function(e){
     //e.preventDefault();
     console.log( 'pos to:', posContact.top )
-    sx.scrollX( posContact.top, 900 );
+    sx.scrollX( Math.abs(posContact.top), 900 );
 
   });
 
