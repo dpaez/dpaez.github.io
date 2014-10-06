@@ -5,17 +5,20 @@
   var logo = document.querySelectorAll( '.logo' );
   var sectionLinks = document.querySelectorAll( '.section-link' );
   var projects = document.getElementById( 'projects' );
-  var pLink = document.getElementById( 'projectsLink' );
   var bio = document.getElementById( 'bio' );
-  var bLink = document.getElementById( 'bioLink' );
   var contact = document.getElementById( 'contact' );
-  var cLink = document.getElementById( 'contactLink' );
-  var articles = [ projects, bio, contact ];
   var cfIntro;
-
-  var posProjects = projects.getBoundingClientRect();
+  var posProjects = projects.offsetTop;
   var posBio = bio.getBoundingClientRect();
   var posContact = contact.getBoundingClientRect();
+  var history = window.history || history.pushState;
+
+  window.addEventListener('resize', function(){
+    //posProjects = projects.getBoundingClientRect();
+    posProjects = projects.offsetTop;
+    posBio = bio.getBoundingClientRect();
+    posContact = contact.getBoundingClientRect();
+  }, false);
 
   // canvas stuff
   cfIntro = cf.init( cIntro, sectionLinks );
@@ -58,28 +61,29 @@
     });
 
     targetLogo.addEventListener('click', function(e){
-      sx.scrollTop(900);
+      sx.scrollZero(900);
     });
   }
 
   projectsLink.addEventListener('click', function(e){
-    //e.preventDefault();
-    console.log( 'pos to:', posProjects.top )
-    sx.scrollX( Math.abs(posProjects.top), 900 );
+    history.pushState(null, null, e.target.parentNode.href);
+    console.log( 'pos to:', posProjects )
+    sx.scrollX( Math.abs(posProjects), 700 );
 
   });
 
   bioLink.addEventListener('click', function(e){
-    //e.preventDefault();
+    history.pushState(null, null, e.target.parentNode.href);
     console.log( 'pos to:', posBio.top )
-    sx.scrollX( Math.abs(posBio.top), 900 );
+    sx.scrollX( Math.abs(posBio.top), 700 );
 
   });
 
   contactLink.addEventListener('click', function(e){
-    //e.preventDefault();
+    console.log(e.target.parentNode.href)
+    history.pushState(null, null, e.target.parentNode.href );
     console.log( 'pos to:', posContact.top )
-    sx.scrollX( Math.abs(posContact.top), 900 );
+    sx.scrollX( Math.abs(posContact.top), 700 );
 
   });
 

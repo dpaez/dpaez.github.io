@@ -83,6 +83,9 @@ article, section, div, h1, h2, p
 h1, h2
   font-family: "AmsterdamSuperstar", "Lucida Console", Monaco, monospace
 
+h3
+  margin-top: 0
+
 article h2
   letter-spacing: 5px
   width: 50%
@@ -90,6 +93,8 @@ article h2
   margin: 0
   display: inline-block
   height: 2em
+  padding: 20px
+  line-height: 1
 
 ul
   list-style: none
@@ -107,11 +112,8 @@ li:nth-child(2n)
   background-color: BACKGROUND
   color: NAV
 
-article h2
-  padding: 20px
-  line-height: 1
-
 /** Position **/
+
 .wrap
   position: relative
   height: 100%
@@ -337,13 +339,13 @@ footer
   #bio, #contact
     height: 100%
 
+
 @media screen and (min-device-width:700px)
   section:not(.items), li h3, li p
     width: 700px
     text-align: justify
     margin-left: auto
     margin-right: auto
-
 
 
 //@media screen and (min-width:750px) and (max-width:900px) and (min-height:820px)
@@ -358,7 +360,8 @@ footer
   .sections-links
     width: 55%
 
-@media screen and (min-width:901px) and (max-width:1350px) and (min-height:800px)
+//@media screen and (min-width:901px) and (max-width:1350px) and (min-height:800px)
+@media screen and (min-width:901px) and (max-width:1350px)
   article:not(#landing)
     height: 100%
 
@@ -371,7 +374,8 @@ footer
   .sections-links
     width: 40%
 
-@media screen and (min-width:1351px) and (min-height:800px)
+//@media screen and (min-width:1351px) and (min-height:800px)
+@media screen and (min-width:1351px)
   article:not(#landing)
     height: 100%
 

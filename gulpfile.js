@@ -66,7 +66,7 @@ gulp.task('concatJS', function() {
 });
 
 gulp.task('concatCSS', function () {
-  gulp.src( ['./css/main.css', './style.css'] )
+  gulp.src( ['./css/main.css', './css/style.css'] )
     .pipe( concatCss('app.css') )
     .pipe( gulp.dest(paths.PUBLIC) );
 });
@@ -104,5 +104,5 @@ gulp.task( 'compressALL', [ 'compressJS', 'compressCSS'] );
 gulp.task( 'production', ['concatALL', 'compressALL'] );
 gulp.task( 'style', ['stylus'] );
 gulp.task( 'template', ['jade'] );
-gulp.task( 'serve', ['connect', 'watch'] );
-gulp.task( 'default', ['build']);
+gulp.task( 'serve', ['build', 'connect', 'watch'] );
+gulp.task( 'default', ['build'] );

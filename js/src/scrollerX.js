@@ -3,6 +3,8 @@
  */
 
 var scrollerX = (function( window, document ){
+  var elem;
+
   var easing = {
     // no easing, no acceleration
     linear: function (t) { return t },
@@ -11,12 +13,13 @@ var scrollerX = (function( window, document ){
   }
 
   var scrollTo = function(Y, duration, easingFunction, callback) {
-      easingFunction = easing[easingFunction] || easing['linear'];
+      easingFunction = easingFunction || 'linear';
+      easingFunction = easing[easingFunction];
       var start = Date.now(),
-        elem = document.documentElement.scrollTop?document.documentElement:document.body,
+        elem = document.documentElement.scrollTop ? document.documentElement : document.body,
         from = elem.scrollTop;
 
-      if (from === Y) {
+      if ( (Y !== 0) && (from === Y) ) {
         if(callback) callback();
         return; /* Prevent scrolling to the Y point if already there */
       }
@@ -31,7 +34,8 @@ var scrollerX = (function( window, document ){
             time = min(1, ((currentTime - start) / duration)),
             easedT = easingFunction(time);
 
-        elem.scrollTop = (easedT * (Y - from)) + from;
+        //elem.scrollTop = (easedT * (Y - from)) + from;
+        window.scroll(Y, (easedT * (Y - from)) + from);
 
         if(time < 1) requestAnimationFrame(scroll);
         else
@@ -42,7 +46,7 @@ var scrollerX = (function( window, document ){
   }
 
   return {
-    scrollTop: function( duration, callback ){
+    scrollZero: function( duration, callback ){
       duration = duration || 500;
       scrollTo( 0, duration, 'easeInQuad', callback );
     },
