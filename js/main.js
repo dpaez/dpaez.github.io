@@ -10,14 +10,25 @@
   var projects = document.getElementById( 'projects' );
   var bio = document.getElementById( 'bio' );
   var contact = document.getElementById( 'contact' );
-  var posProjects = projects.offsetTop;
+  var posProjects = projects.getBoundingClientRect();
   var posBio = bio.getBoundingClientRect();
   var posContact = contact.getBoundingClientRect();
   var cfIntro;
 
+  var getOffset = function( el ) {
+    var _x = 0;
+    var _y = 0;
+    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
+        _x += Math.abs(el.offsetLeft - el.scrollLeft);
+        _y += Math.abs(el.offsetTop - el.scrollTop);
+        el = el.offsetParent;
+    }
+    return { top: _y, left: _x };
+  }
+
   window.addEventListener('resize', function(){
     //posProjects = projects.getBoundingClientRect();
-    posProjects = projects.offsetTop;
+    posProjects = projects.getBoundingClientRect();
     posBio = bio.getBoundingClientRect();
     posContact = contact.getBoundingClientRect();
   }, false);
@@ -63,26 +74,25 @@
     });
 
     targetLogo.addEventListener('click', function(e){
+      e.preventDefault();
       sx.scrollZero(900);
+      window.history.pushState( false, "DK", '/' );
+      return false;
     });
   }
 
   projectsLink.addEventListener('click', function(e){
     //e.preventDefault();
-    if (posProjects.top === 0){
-      posProjects.top = Math.abs(document.body.getBoundingClientRect().top);
-    }
-    console.log( 'pos to:', posProjects )
-    sx.scrollX( Math.abs(posProjects), 700 );
+    posProjects = getOffset(projects);
+    console.log( 'pos to:', posProjects.top )
+    sx.scrollX( Math.abs(posProjects.top), 700 );
     //window.history.pushState( "", "DK | Projects", projectsLink.dataset.section );
     return false;
   });
 
   bioLink.addEventListener('click', function(e){
     //e.preventDefault();
-    if (posBio.top === 0){
-      posBio.top = Math.abs(document.body.getBoundingClientRect().top);
-    }
+    posBio = getOffset(bio);
     console.log( 'pos to:', posBio.top )
     sx.scrollX( Math.abs(posBio.top), 700 );
     //window.history.pushState( "", "DK | Bio", bioLink.dataset.section );
@@ -91,9 +101,7 @@
 
   contactLink.addEventListener('click', function(e){
     //e.preventDefault();
-    if (posContact.top === 0){
-      posContact.top = Math.abs(document.body.getBoundingClientRect().top);
-    }
+    posContact = getOffset(contact);
     console.log( 'pos to:', posContact.top )
     sx.scrollX( Math.abs(posContact.top), 700 );
     //window.history.pushState( "", "DK | Contact", contactLink.dataset.section );
