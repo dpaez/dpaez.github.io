@@ -17,7 +17,9 @@ var scrollerX = (function( window, document ){
       easingFunction = easing[easingFunction];
       var start = Date.now(),
         elem = document.documentElement.scrollTop ? document.documentElement : document.body,
+        //body = document.body.getBoundingClientRect(),
         from = elem.scrollTop;
+        //offset = body.top - from;
 
       if ( (Y !== 0) && (from === Y) ) {
         if(callback) callback();

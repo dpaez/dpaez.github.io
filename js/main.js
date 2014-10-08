@@ -63,33 +63,40 @@
     });
 
     targetLogo.addEventListener('click', function(e){
-      window.history.pushState( false, 'DK', '/' );
       sx.scrollZero(900);
-      return false;
     });
   }
 
   projectsLink.addEventListener('click', function(e){
-    e.preventDefault();
+    //e.preventDefault();
+    if (posProjects.top === 0){
+      posProjects.top = Math.abs(document.body.getBoundingClientRect().top);
+    }
     console.log( 'pos to:', posProjects )
     sx.scrollX( Math.abs(posProjects), 700 );
-    window.history.pushState( "", "DK | Projects", projectsLink.dataset.section );
+    //window.history.pushState( "", "DK | Projects", projectsLink.dataset.section );
     return false;
   });
 
   bioLink.addEventListener('click', function(e){
-    e.preventDefault();
+    //e.preventDefault();
+    if (posBio.top === 0){
+      posBio.top = Math.abs(document.body.getBoundingClientRect().top);
+    }
     console.log( 'pos to:', posBio.top )
     sx.scrollX( Math.abs(posBio.top), 700 );
-    window.history.pushState( "", "DK | Bio", bioLink.dataset.section );
+    //window.history.pushState( "", "DK | Bio", bioLink.dataset.section );
     return false;
   });
 
   contactLink.addEventListener('click', function(e){
-    e.preventDefault();
+    //e.preventDefault();
+    if (posContact.top === 0){
+      posContact.top = Math.abs(document.body.getBoundingClientRect().top);
+    }
     console.log( 'pos to:', posContact.top )
     sx.scrollX( Math.abs(posContact.top), 700 );
-    window.history.pushState( "", "DK | Contact", contactLink.dataset.section );
+    //window.history.pushState( "", "DK | Contact", contactLink.dataset.section );
     return false;
   });
 
