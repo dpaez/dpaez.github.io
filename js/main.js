@@ -4,14 +4,16 @@
   var cIntro = document.getElementById( 'intro' );
   var logo = document.querySelectorAll( '.logo' );
   var sectionLinks = document.querySelectorAll( '.section-link' );
+  var projectsLink = document.getElementById( 'projectsLink' );
+  var bioLink = document.getElementById( 'bioLink' );
+  var contactLink = document.getElementById( 'contactLink' );
   var projects = document.getElementById( 'projects' );
   var bio = document.getElementById( 'bio' );
   var contact = document.getElementById( 'contact' );
-  var cfIntro;
   var posProjects = projects.offsetTop;
   var posBio = bio.getBoundingClientRect();
   var posContact = contact.getBoundingClientRect();
-  var history = window.history || history.pushState;
+  var cfIntro;
 
   window.addEventListener('resize', function(){
     //posProjects = projects.getBoundingClientRect();
@@ -61,30 +63,34 @@
     });
 
     targetLogo.addEventListener('click', function(e){
+      window.history.pushState( false, 'DK', '/' );
       sx.scrollZero(900);
+      return false;
     });
   }
 
   projectsLink.addEventListener('click', function(e){
-    history.pushState(null, null, e.target.parentNode.href);
+    e.preventDefault();
     console.log( 'pos to:', posProjects )
     sx.scrollX( Math.abs(posProjects), 700 );
-
+    window.history.pushState( "", "DK | Projects", projectsLink.dataset.section );
+    return false;
   });
 
   bioLink.addEventListener('click', function(e){
-    history.pushState(null, null, e.target.parentNode.href);
+    e.preventDefault();
     console.log( 'pos to:', posBio.top )
     sx.scrollX( Math.abs(posBio.top), 700 );
-
+    window.history.pushState( "", "DK | Bio", bioLink.dataset.section );
+    return false;
   });
 
   contactLink.addEventListener('click', function(e){
-    console.log(e.target.parentNode.href)
-    history.pushState(null, null, e.target.parentNode.href );
+    e.preventDefault();
     console.log( 'pos to:', posContact.top )
     sx.scrollX( Math.abs(posContact.top), 700 );
-
+    window.history.pushState( "", "DK | Contact", contactLink.dataset.section );
+    return false;
   });
 
 }( canvasFull, scrollerX ))

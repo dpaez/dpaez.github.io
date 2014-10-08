@@ -1,1 +1,422 @@
-!function(){for(var e=0,t=["ms","moz","webkit","o"],n=0;n<t.length&&!window.requestAnimationFrame;++n)window.requestAnimationFrame=window[t[n]+"RequestAnimationFrame"],window.cancelAnimationFrame=window[t[n]+"CancelAnimationFrame"]||window[t[n]+"CancelRequestAnimationFrame"];window.requestAnimationFrame||(window.requestAnimationFrame=function(t){var n=(new Date).getTime(),i=Math.max(0,16-(n-e)),o=window.setTimeout(function(){t(n+i)},i);return e=n+i,o}),window.cancelAnimationFrame||(window.cancelAnimationFrame=function(e){clearTimeout(e)})}();var canvasFull=function(e,t){var n,i,o,a="#8c918d",r=1,s=.45,c=5,l=65,h=0,d=!1,u=v,m=function(t){var n=e.innerWidth,i=e.innerHeight;t.strokeStyle=a,t.beginPath(),t.moveTo(0,0),t.lineTo(n,i),t.stroke(),t.beginPath(),t.moveTo(n,0),t.lineTo(0,i),t.stroke()},v=function(e){var t=r-r*s;r=t;var n=this.animationMaxX-this.animationMaxX*s,i=(this.canvas.width-n)/2;n+=i;var o=this.animationMaxY-this.animationMaxY*s,a=(this.canvas.height-o)/2;o+=a,this.newZeroX=i,this.newZeroY=a,e.clearRect(0,0,this.canvas.width,this.canvas.height),e.beginPath(),e.moveTo(newZeroX,newZeroY),e.lineTo(n,o),e.stroke(),e.beginPath(),e.moveTo(n,newZeroY),e.lineTo(newZeroX,o),e.stroke(),this.animationMaxX=n,this.animationMaxY=o},w=function(e){return e.clearRect(0,0,this.canvas.width,this.canvas.height),h+=c,h>l?(l=65,h=0,void(d=!0)):(e.translate(this.canvas.width/2,this.canvas.height/2),e.rotate(-c*Math.PI/180),e.translate(-this.canvas.width/2,-this.canvas.height/2),e.beginPath(),e.moveTo(this.newZeroX,this.newZeroY),e.lineTo(this.animationMaxX,this.animationMaxY),e.stroke(),e.beginPath(),e.moveTo(this.animationMaxX,this.newZeroY),e.lineTo(this.newZeroX,this.animationMaxY),void e.stroke())},g=function(){o.clearRect(0,0,this.canvas.width,this.canvas.height);var e=r+r*s;r=e;var t=this.animationMaxX+this.animationMaxX*s,n=(this.canvas.width-t)/2;t+=n;var i=this.animationMaxY+this.animationMaxY*s,a=(this.canvas.height-i)/2;i+=a,this.newZeroX=n,this.newZeroY=a,o.beginPath(),o.moveTo(newZeroX,newZeroY),o.lineTo(t,i),o.stroke(),o.beginPath(),o.moveTo(t,newZeroY),o.lineTo(newZeroX,i),o.stroke(),this.animationMaxX=t,this.animationMaxY=i},f=function(){r=1,l+=h,l>360&&(l=65,h=0)},T=function(t,n){if(e.addEventListener("resize",p.bind(this),!1),n.length)for(var i=0;i<n.length;i++)n[i].addEventListener("mouseover",M.bind(this),!1);else n.addEventListener("mouseover",M.bind(this),!1);return void 0===typeof t?void console.error("A canvas element is required."):(this.canvas=t,o=t.getContext("2d"),void(t.getContext?p():console.error("No canvas context obtained.")))},p=function(){var n,i,a=t.documentElement,r=t.getElementsByTagName("article")[0],s=a.clientWidth||r.clientWidth||e.innerWidth,c=a.clientHeight||r.clientHeight||e.innerHeight,l=0;i=c,n=s,e.outerWidth&&(l=(s-e.outerWidth)/2),this.canvas.width=n,this.canvas.height=i,o.clearRect(0,0,this.canvas.width,this.canvas.height),f(),m(o)},x=function(e,t){return t>e?e:t},M=function(){n=Date.now(),o.strokeStyle=a,this.animationMaxX=this.canvas.width,this.animationMaxY=this.canvas.height,o.clearRect(0,0,this.canvas.width,this.canvas.height),u=v,i=X,k()},X=function(){n=Date.now(),u=w,i=b,k()},b=function(){n=Date.now(),u=g,i=f,k()},k=function(){var e=Date.now(),t=x(1,(e-n)/600);u(o),1>t&&!d?requestAnimationFrame(k.bind(this)):(d=!1,i(o))};return{init:function(e,t){T(e,t)}}}(window,document),scrollerX=function(e,t){var n={linear:function(e){return e},easeInQuad:function(e){return e*e}},i=function(i,o,a,r){function s(e,t){return t>e?e:t}function c(){var t=Date.now(),n=s(1,(t-l)/o),h=a(n);e.scroll(i,h*(i-d)+d),1>n?requestAnimationFrame(c):r&&r()}a=a||"linear",a=n[a];var l=Date.now(),h=t.documentElement.scrollTop?t.documentElement:t.body,d=h.scrollTop;return 0!==i&&d===i?void(r&&r()):void requestAnimationFrame(c)};return{scrollZero:function(e,t){e=e||500,i(0,e,"easeInQuad",t)},scrollX:function(e,t,n){t=t||500,i(e,t,"easeInQuad",n)}}}(window,document);!function(e,t){var n,i=document.getElementById("intro"),o=document.querySelectorAll(".logo"),a=document.querySelectorAll(".section-link"),r=document.getElementById("projects"),s=document.getElementById("bio"),c=document.getElementById("contact"),l=r.offsetTop,h=s.getBoundingClientRect(),d=c.getBoundingClientRect(),u=window.history||u.pushState;window.addEventListener("resize",function(){l=r.offsetTop,h=s.getBoundingClientRect(),d=c.getBoundingClientRect()},!1),n=e.init(i,a),window.addEventListener("scroll",function(){var e=window.pageYOffset||document.documentElement.scrollTop,t=100,n=document.querySelectorAll(".kan1"),i=document.querySelectorAll(".none");if(e>t){for(var o=0;o<i.length;o++)i[o].classList.add("removeNone");for(var a=0;a<n.length;a++)n[a].classList.add("extendKan")}else{for(var o=0;o<i.length;o++)i[o].classList.remove("removeNone");for(var a=0;a<n.length;a++)n[a].classList.remove("extendKan")}});for(var m=0;m<o.length;m++){var v=o[m];v.addEventListener("mouseover",function(e){var t=e.target;t.classList.add("lights")}),v.addEventListener("mouseleave",function(e){var t=e.target;t.classList.remove("lights")}),v.addEventListener("click",function(){t.scrollZero(900)})}projectsLink.addEventListener("click",function(e){u.pushState(null,null,e.target.parentNode.href),console.log("pos to:",l),t.scrollX(Math.abs(l),700)}),bioLink.addEventListener("click",function(e){u.pushState(null,null,e.target.parentNode.href),console.log("pos to:",h.top),t.scrollX(Math.abs(h.top),700)}),contactLink.addEventListener("click",function(e){console.log(e.target.parentNode.href),u.pushState(null,null,e.target.parentNode.href),console.log("pos to:",d.top),t.scrollX(Math.abs(d.top),700)})}(canvasFull,scrollerX);
+// http://paulirish.com/2011/requestanimationframe-for-smart-animating/
+// http://my.opera.com/emoller/blog/2011/12/20/requestanimationframe-for-smart-er-animating
+
+// requestAnimationFrame polyfill by Erik Möller
+// fixes from Paul Irish and Tino Zijdel (<-credits)
+(function() {
+  var lastTime = 0;
+  var vendors = ['ms', 'moz', 'webkit', 'o'];
+  for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+    window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+    window.cancelAnimationFrame = window[vendors[x]+'CancelAnimationFrame']
+    || window[vendors[x]+'CancelRequestAnimationFrame'];
+  }
+
+  if (!window.requestAnimationFrame){
+    window.requestAnimationFrame = function(callback, element) {
+      var currTime = new Date().getTime();
+      var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+      var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
+      lastTime = currTime + timeToCall;
+      return id;
+    };
+  }
+
+  if (!window.cancelAnimationFrame){
+    window.cancelAnimationFrame = function(id) {
+      clearTimeout(id);
+    };
+  }
+}());
+/*! canvasFull.js v1.0.0 | MIT License | DK Official Site */
+
+var canvasFull = (function( window, document ){
+
+  var STROKECOLOR = '#8c918d';
+  var currentScale = 1;
+  var scaleFactor = 0.45;
+  var degreeStep = 5;
+  var degreeLimit = 65;
+  var currentDegree = 0;
+  var STOP = false;
+  var startTime;
+  var callbackFn;
+  var ctx;
+  var currentAnimation = drawAnimation;
+
+  var drawIntro = function( ctx ){
+    var maxX = window.innerWidth;
+    var maxY = window.innerHeight;
+    ctx.strokeStyle = STROKECOLOR;
+    ctx.beginPath();
+    ctx.moveTo( 0, 0 );
+    ctx.lineTo( maxX, maxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( maxX, 0 );
+    ctx.lineTo( 0, maxY );
+    ctx.stroke();
+  };
+
+
+  var drawAnimation = function( ctx ){
+
+    var newScale = currentScale - (currentScale * scaleFactor);
+    currentScale = newScale;
+    var maxX = this.animationMaxX - (this.animationMaxX * scaleFactor) ;
+    //var maxX = this.canvas.height * newScale;
+    var diffX = (this.canvas.width - maxX)/2;
+    maxX += diffX;
+    var maxY = this.animationMaxY - (this.animationMaxY * scaleFactor) ;
+    //var maxY = this.canvas.width * newScale;
+    var diffY = (this.canvas.height - maxY)/2;
+    maxY += diffY;
+    this.newZeroX = diffX;
+    this.newZeroY = diffY;
+
+
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    ctx.beginPath();
+    ctx.moveTo( newZeroX, newZeroY );
+    ctx.lineTo( maxX, maxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( maxX, newZeroY );
+    ctx.lineTo( newZeroX, maxY );
+    ctx.stroke();
+
+    this.animationMaxX = maxX;
+    this.animationMaxY = maxY;
+  };
+
+  var drawRotateAnimation = function( ctx ){
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    //ctx.rotate( -65 * Math.PI / 180 );
+    currentDegree += degreeStep;
+    if ( currentDegree > degreeLimit ){
+      degreeLimit = 65;
+      currentDegree = 0;
+      STOP = true;
+      return;
+    }
+    ctx.translate(this.canvas.width/2, this.canvas.height/2);
+
+    ctx.rotate( -degreeStep * Math.PI / 180 );
+
+    ctx.translate(-this.canvas.width/2, -this.canvas.height/2);
+
+    ctx.beginPath();
+    ctx.moveTo( this.newZeroX, this.newZeroY );
+    ctx.lineTo( this.animationMaxX, this.animationMaxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( this.animationMaxX, this.newZeroY );
+    ctx.lineTo( this.newZeroX, this.animationMaxY );
+    ctx.stroke();
+
+  };
+
+  var drawRestoreAnimation = function(){
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+    var newScale = currentScale + (currentScale * scaleFactor);
+    currentScale = newScale;
+    var maxX = this.animationMaxX + (this.animationMaxX * scaleFactor) ;
+    //var maxX = this.canvas.height * newScale;
+    var diffX = (this.canvas.width - maxX)/2;
+    maxX += diffX;
+    var maxY = this.animationMaxY + (this.animationMaxY * scaleFactor) ;
+    //var maxY = this.canvas.width * newScale;
+    var diffY = (this.canvas.height - maxY)/2;
+    maxY += diffY;
+    this.newZeroX = diffX;
+    this.newZeroY = diffY;
+
+    ctx.beginPath();
+    ctx.moveTo( newZeroX, newZeroY );
+    ctx.lineTo( maxX, maxY );
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo( maxX, newZeroY );
+    ctx.lineTo( newZeroX, maxY );
+    ctx.stroke();
+
+    this.animationMaxX = maxX;
+    this.animationMaxY = maxY;
+  };
+
+  var cleanAnimation = function( ctx ){
+    currentScale = 1;
+    degreeLimit = degreeLimit + currentDegree;
+    if ( degreeLimit > 360 ){
+      degreeLimit = 65;
+      currentDegree = 0;
+    }
+  };
+
+  var start = function( canvas, element ){
+
+    window.addEventListener('resize', resize.bind( this ), false);
+
+    if ( element.length ){
+      for(var j=0;j<element.length;j++){
+        element[ j ].addEventListener('mouseover', preAnimate.bind(this), false);
+      }
+    }else{
+      element.addEventListener('mouseover', preAnimate.bind(this), false);
+    }
+
+    if ( undefined === typeof canvas ){
+      console.error( 'A canvas element is required.' );
+      return;
+    }
+
+    this.canvas = canvas;
+
+    ctx = canvas.getContext('2d');
+    if ( canvas.getContext ){
+      resize();
+
+    } else {
+      console.error( 'No canvas context obtained.' );
+    }
+  };
+
+  var resize = function(){
+
+    var e = document.documentElement,
+        g = document.getElementsByTagName('article')[0],
+        x = e.clientWidth || g.clientWidth || window.innerWidth,
+        y = e.clientHeight || g.clientHeight || window.innerHeight;
+
+    var cx,cy;                  //The size of the canvas-Element
+    var cleft=0;                //Offset to the left border (to center the canvas-element, if there are borders on the left&right)
+    cy = y;
+    cx = x;
+    if ( window.outerWidth ){
+      cleft = ( x - window.outerWidth )/2;
+    }
+
+    this.canvas.width = cx;
+    this.canvas.height = cy;
+
+    // TODO: separate this call, maybe trigger resized local event
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    cleanAnimation();
+    drawIntro( ctx );
+  }
+
+  var min = function( a, b ) {
+    return a<b?a:b;
+  }
+
+  var preAnimate = function(){
+    startTime = Date.now();
+    ctx.strokeStyle = STROKECOLOR;
+    this.animationMaxX = this.canvas.width;
+    this.animationMaxY = this.canvas.height;
+    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    currentAnimation = drawAnimation;
+    callbackFn = rotateAnimation;
+    animate();
+  }
+
+  var rotateAnimation = function(){
+    startTime = Date.now();
+    currentAnimation = drawRotateAnimation;
+    callbackFn = restoreAnimation;
+    animate();
+  }
+
+  var restoreAnimation = function(){
+    startTime = Date.now();
+    currentAnimation = drawRestoreAnimation;
+    callbackFn = cleanAnimation;
+    animate();
+  }
+
+  var animate = function(){
+
+    var currentTime = Date.now(),
+        time = min(1, ((currentTime - startTime) / 600));
+
+    currentAnimation( ctx );
+
+    if ( (time < 1) && (!STOP) ){
+      requestAnimationFrame( animate.bind(this) );
+    }
+    else{
+      STOP = false;
+      callbackFn( ctx );
+    }
+  }
+
+
+  return {
+    init: function( canvas, element ){
+      start( canvas, element );
+    }
+  }
+
+}( window, document ))
+/**
+ * Vanilla ScrollTo functionality based on gist: https://gist.github.com/dezinezync/5487119
+ */
+
+var scrollerX = (function( window, document ){
+  var elem;
+
+  var easing = {
+    // no easing, no acceleration
+    linear: function (t) { return t },
+    // accelerating from zero velocity
+    easeInQuad: function (t) { return t*t }
+  }
+
+  var scrollTo = function(Y, duration, easingFunction, callback) {
+      easingFunction = easingFunction || 'linear';
+      easingFunction = easing[easingFunction];
+      var start = Date.now(),
+        elem = document.documentElement.scrollTop ? document.documentElement : document.body,
+        from = elem.scrollTop;
+
+      if ( (Y !== 0) && (from === Y) ) {
+        if(callback) callback();
+        return; /* Prevent scrolling to the Y point if already there */
+      }
+
+      function min(a,b) {
+        return a<b?a:b;
+      }
+
+      function scroll(timestamp) {
+
+        var currentTime = Date.now(),
+            time = min(1, ((currentTime - start) / duration)),
+            easedT = easingFunction(time);
+
+        //elem.scrollTop = (easedT * (Y - from)) + from;
+        window.scroll(Y, (easedT * (Y - from)) + from);
+
+        if(time < 1) requestAnimationFrame(scroll);
+        else
+          if(callback) callback();
+      }
+
+      requestAnimationFrame(scroll)
+  }
+
+  return {
+    scrollZero: function( duration, callback ){
+      duration = duration || 500;
+      scrollTo( 0, duration, 'easeInQuad', callback );
+    },
+    scrollX: function( Y, duration, callback ){
+      duration = duration || 500;
+      scrollTo( Y, duration, 'easeInQuad', callback );
+    }
+  }
+
+}( window, document ))
+/*! main.js v1.0.0 | MIT License | DK Official Site */
+
+;(function( cf, sx  ){
+  var cIntro = document.getElementById( 'intro' );
+  var logo = document.querySelectorAll( '.logo' );
+  var sectionLinks = document.querySelectorAll( '.section-link' );
+  var projectsLink = document.getElementById( 'projectsLink' );
+  var bioLink = document.getElementById( 'bioLink' );
+  var contactLink = document.getElementById( 'contactLink' );
+  var projects = document.getElementById( 'projects' );
+  var bio = document.getElementById( 'bio' );
+  var contact = document.getElementById( 'contact' );
+  var posProjects = projects.offsetTop;
+  var posBio = bio.getBoundingClientRect();
+  var posContact = contact.getBoundingClientRect();
+  var cfIntro;
+
+  window.addEventListener('resize', function(){
+    //posProjects = projects.getBoundingClientRect();
+    posProjects = projects.offsetTop;
+    posBio = bio.getBoundingClientRect();
+    posContact = contact.getBoundingClientRect();
+  }, false);
+
+  // canvas stuff
+  cfIntro = cf.init( cIntro, sectionLinks );
+
+  // header scroll effect
+  window.addEventListener('scroll', function(e){
+    var distanceY = window.pageYOffset || document.documentElement.scrollTop,
+        shrinkOn = 100,
+        kan1 = document.querySelectorAll(".kan1"),
+        none = document.querySelectorAll(".none");
+    if (distanceY > shrinkOn) {
+      for ( var i=0; i<none.length; i++ ){
+        none[ i ].classList.add( 'removeNone' );
+      }
+      for ( var j=0; j<kan1.length; j++ ){
+        kan1[ j ].classList.add( 'extendKan' );
+      }
+    } else {
+      for ( var i=0; i<none.length; i++ ){
+        none[ i ].classList.remove( 'removeNone' );
+      }
+      for ( var j=0; j<kan1.length; j++ ){
+        kan1[ j ].classList.remove( 'extendKan' );
+      }
+    }
+  });
+
+  // logo events
+  for ( var w=0; w<logo.length;w++ ){
+    var targetLogo = logo[ w ];
+    targetLogo.addEventListener('mouseover', function(e){
+      var current = e.target;
+      current.classList.add('lights');
+    });
+
+
+    targetLogo.addEventListener('mouseleave', function(e){
+      var current = e.target;
+      current.classList.remove('lights');
+    });
+
+    targetLogo.addEventListener('click', function(e){
+      window.history.pushState( false, 'DK', '/' );
+      sx.scrollZero(900);
+      return false;
+    });
+  }
+
+  projectsLink.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log( 'pos to:', posProjects )
+    sx.scrollX( Math.abs(posProjects), 700 );
+    window.history.pushState( "", "DK | Projects", projectsLink.dataset.section );
+    return false;
+  });
+
+  bioLink.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log( 'pos to:', posBio.top )
+    sx.scrollX( Math.abs(posBio.top), 700 );
+    window.history.pushState( "", "DK | Bio", bioLink.dataset.section );
+    return false;
+  });
+
+  contactLink.addEventListener('click', function(e){
+    e.preventDefault();
+    console.log( 'pos to:', posContact.top )
+    sx.scrollX( Math.abs(posContact.top), 700 );
+    window.history.pushState( "", "DK | Contact", contactLink.dataset.section );
+    return false;
+  });
+
+}( canvasFull, scrollerX ))
