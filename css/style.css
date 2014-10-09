@@ -38,6 +38,11 @@ body {
   top: 50%;
   transform: translateY(-50%);
 }
+.middle {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
 a {
   text-decoration: none;
   color: #316dd4;
@@ -152,8 +157,9 @@ footer {
   position: relative;
   width: 70%;
   height: 380px;
-  top: 30%;
-  transform: translateY(-50%);
+/*top: 30%
+  transform: translateY(-50%)*/
+  margin-top: 5em;
   z-index: 10;
   border-top: 25px solid transparent;
   border-right: 25px solid #2b2a2a;
@@ -172,7 +178,7 @@ footer {
   margin-bottom: 0;
 }
 .logo {
-  position: absolute;
+  float: right;
   right: 0;
   margin: 0;
   display: inline-block;
@@ -272,8 +278,13 @@ footer {
 .removeNone {
   width: 0;
 }
+/*******************/
 /** Media Queries **/
-@media screen and (min-device-width: 320px) and (max-device-width: 480px) {
+/*******************/
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  body {
+    font-size: 90%;
+  }
   .logo {
     display: none;
     visibility: hidden;
@@ -287,9 +298,13 @@ footer {
     height: 1em;
     margin: 0;
   }
+  #landing {
+    margin-bottom: 1em;
+  }
   .sections-links {
     height: 290px;
     width: 100%;
+    margin-top: 0;
   }
   .section-link span {
     height: 80px;
@@ -330,17 +345,33 @@ footer {
     margin: 0;
   }
 }
-@media screen and (min-height: 680px) {
-  #bio,
-  #contact {
-    height: 100%;
+@media screen and (min-width: 470px) and (max-width: 750px) {
+  .logo {
+    display: none;
+    visibility: hidden;
+  }
+  .sections-links {
+    width: 100%;
+    margin-top: 0;
+  }
+  h3 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+    padding: 0;
+  }
+  .sections-links:before,
+  .sections-links:after {
+    display: none;
+    visibility: hidden;
   }
 }
-@media screen and (min-device-width: 700px) {
+@media screen and (min-width: 40em) {
   section:not(.items),
   li h3,
   li p {
-    width: 700px;
+    width: 38em;
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
@@ -356,7 +387,7 @@ footer {
     padding: 0 20px;
   }
   .sections-links {
-    width: 55%;
+    width: 100%;
   }
 }
 @media screen and (min-width: 901px) and (max-width: 1350px) {

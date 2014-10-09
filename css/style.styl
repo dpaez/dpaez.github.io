@@ -49,6 +49,11 @@ body
   top: 50%
   transform: translateY(-50%)
 
+.middle
+  position: relative
+  margin-left: auto
+  margin-right: auto
+
 a
   text-decoration: none
   color: LINK
@@ -156,8 +161,9 @@ footer
   position: relative
   width: 70%
   height: 380px // 3 * 110 (.section-link) + 25 (border-top) + 25 (border-bottom)
-  top: 30%
-  transform: translateY(-50%)
+  /*top: 30%
+  transform: translateY(-50%)*/
+  margin-top: 5em
   z-index: 10
   border-top: 25px solid transparent
   border-right: 25px solid KAN
@@ -177,7 +183,7 @@ footer
   margin-bottom: 0
 
 .logo
-  position: absolute
+  float: right
   right: 0
   margin:0
   display: inline-block
@@ -277,11 +283,15 @@ footer
 .removeNone
   width: 0
 
+/*******************/
 /** Media Queries **/
+/*******************/
 
 // Small devices
+@media screen and (min-width:320px) and (max-width:480px)
+  body
+    font-size: 90%
 
-@media screen and (min-device-width:320px) and (max-device-width:480px)
   .logo
     display: none
     visibility: hidden
@@ -293,9 +303,13 @@ footer
     height: 1em
     margin: 0
 
+  #landing
+    margin-bottom: 1em
+
   .sections-links
     height: 290px
     width: 100%
+    margin-top: 0
 
   .section-link span
     height: 80px
@@ -314,7 +328,6 @@ footer
     visibility: hidden
 
 
-//@media screen and (min-device-width:320px) and (max-device-height:360px)
 @media screen and (max-height:360px)
   .logo
     display: none
@@ -333,22 +346,34 @@ footer
     height: 1em
     margin: 0
 
-// Bigger devices below
+@media screen and (min-width:470px) and (max-width:750px)
+  .logo
+    display: none
+    visibility: hidden
 
-@media screen and (min-height:680px)
-  #bio, #contact
-    height: 100%
+  .sections-links
+    width: 100%
+    margin-top: 0
 
+  h3
+    margin: 0
 
-@media screen and (min-device-width:700px)
+  p
+    margin: 0
+    padding: 0
+
+  .sections-links:before, .sections-links:after
+    display: none
+    visibility: hidden
+
+@media screen and (min-width:40em)
   section:not(.items), li h3, li p
-    width: 700px
+    width: 38em
     text-align: justify
     margin-left: auto
     margin-right: auto
 
 
-//@media screen and (min-width:750px) and (max-width:900px) and (min-height:820px)
 @media screen and (min-width:750px) and (max-width:900px)
   article:not(#landing)
     height: 100%
@@ -358,7 +383,7 @@ footer
     padding: 0 20px
 
   .sections-links
-    width: 55%
+    width: 100%
 
 //@media screen and (min-width:901px) and (max-width:1350px) and (min-height:800px)
 @media screen and (min-width:901px) and (max-width:1350px)

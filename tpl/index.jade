@@ -4,7 +4,8 @@ html(lang="es")
     meta(charset='utf-8')
     meta(http-equiv="X-UA-Compatible" content="IE=edge,chrome=1")
     title DK
-    meta(name="viewport" content="width=device-width, initial-scale=1")
+    meta(name="viewport" content="width=device-width, minimum-scale=1.0,maximum-scale=1.0,user-scalable=no")
+    //- meta(name="viewport" content="width=device-width, initial-scale=1, height=device-height")
     meta(content="white", name="apple-mobile-web-app-status-bar-style")
     meta(content="Diego -DK- Paez", property="og:title")
     meta(content="Developer, HCI researcher, Usability consultant, I like to write and I like to mix.", property="og:description")
@@ -16,7 +17,7 @@ html(lang="es")
 
     body
       div.wrap
-        article.full#landing
+        article#landing
           canvas#intro
 
           div.title
@@ -34,7 +35,7 @@ html(lang="es")
             div.none
             div.kan1
 
-          nav.sections-links.total-center
+          nav.sections-links.middle
             .section-link
               a(data-section="projects", href="#projects")#projectsLink
                 span PROJECTS

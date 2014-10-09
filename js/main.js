@@ -2,6 +2,7 @@
 
 ;(function( cf, sx  ){
   var cIntro = document.getElementById( 'intro' );
+  var landing = document.getElementById( 'landing' );
   var logo = document.querySelectorAll( '.logo' );
   var sectionLinks = document.querySelectorAll( '.section-link' );
   var projectsLink = document.getElementById( 'projectsLink' );
@@ -13,8 +14,16 @@
   var posProjects = projects.getBoundingClientRect();
   var posBio = bio.getBoundingClientRect();
   var posContact = contact.getBoundingClientRect();
+  var HEIGHT;
   var cfIntro;
+  if( window.innerWidth )
+  {
+    HEIGHT = window.innerHeight;
+  } else {
 
+    HEIGHT = document.body.clientHeight;
+  }
+  landing.style.height = HEIGHT + 'px';
   var getOffset = function( el ) {
     var _x = 0;
     var _y = 0;
@@ -31,7 +40,18 @@
     posProjects = projects.getBoundingClientRect();
     posBio = bio.getBoundingClientRect();
     posContact = contact.getBoundingClientRect();
+    if( window.innerWidth )
+    {
+      HEIGHT = window.innerHeight;
+    } else {
+
+      HEIGHT = document.body.clientHeight;
+    }
+    landing.style.height = HEIGHT + 'px';
+
   }, false);
+
+
 
   // canvas stuff
   cfIntro = cf.init( cIntro, sectionLinks );
