@@ -13,38 +13,38 @@ var scrollerX = (function( window, document ){
   }
 
   var scrollTo = function(Y, duration, easingFunction, callback) {
-      easingFunction = easingFunction || 'linear';
-      easingFunction = easing[easingFunction];
-      var start = Date.now(),
-        elem = document.documentElement.scrollTop ? document.documentElement : document.body,
-        //body = document.body.getBoundingClientRect(),
-        from = elem.scrollTop;
-        //offset = body.top - from;
+    easingFunction = easingFunction || 'linear';
+    easingFunction = easing[easingFunction];
+    var start = Date.now(),
+      elem = document.documentElement.scrollTop ? document.documentElement : document.body,
+      //body = document.body.getBoundingClientRect(),
+      from = elem.scrollTop;
+      //offset = body.top - from;
 
-      if ( (Y !== 0) && (from === Y) ) {
+    if ( (Y !== 0) && (from === Y) ) {
+      if(callback) callback();
+      return; /* Prevent scrolling to the Y point if already there */
+    }
+
+    function min(a,b) {
+      return a<b?a:b;
+    }
+
+    function scroll(timestamp) {
+
+      var currentTime = Date.now(),
+          time = min(1, ((currentTime - start) / duration)),
+          easedT = easingFunction(time);
+
+      //elem.scrollTop = (easedT * (Y - from)) + from;
+      window.scroll(Y, (easedT * (Y - from)) + from);
+
+      if(time < 1) requestAnimationFrame(scroll);
+      else
         if(callback) callback();
-        return; /* Prevent scrolling to the Y point if already there */
-      }
+    }
 
-      function min(a,b) {
-        return a<b?a:b;
-      }
-
-      function scroll(timestamp) {
-
-        var currentTime = Date.now(),
-            time = min(1, ((currentTime - start) / duration)),
-            easedT = easingFunction(time);
-
-        //elem.scrollTop = (easedT * (Y - from)) + from;
-        window.scroll(Y, (easedT * (Y - from)) + from);
-
-        if(time < 1) requestAnimationFrame(scroll);
-        else
-          if(callback) callback();
-      }
-
-      requestAnimationFrame(scroll)
+    requestAnimationFrame(scroll)
   }
 
   return {

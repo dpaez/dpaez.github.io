@@ -3,16 +3,24 @@
 var canvasFull = (function( window, document ){
 
   var STROKECOLOR = '#8c918d';
-  var currentScale = 1;
+  var DURATION = 500; // ORIGINAL: 600ms
   var scaleFactor = 0.45;
-  var degreeStep = 5;
-  var degreeLimit = 65;
+  var degreeStep = 2;
+  var degreeLimit = 10;
   var currentDegree = 0;
   var STOP = false;
   var startTime;
   var callbackFn;
   var ctx;
   var currentAnimation = drawAnimation;
+  var easing = {
+    // no easing, no acceleration
+    linear: function (t) { return t },
+    // accelerating from zero velocity
+    easeInQuad: function (t) { return t*t },
+    easeExp: function (t) { return Math.pow(t,t) }
+  };
+  var easingFunction = easing['easeInQuad'];
 
   var drawIntro = function( ctx ){
     var maxX = window.innerWidth;
@@ -30,15 +38,13 @@ var canvasFull = (function( window, document ){
   };
 
 
-  var drawAnimation = function( ctx ){
+  var drawAnimation = function( ctx, easedT ){
 
-    var newScale = currentScale - (currentScale * scaleFactor);
-    currentScale = newScale;
-    var maxX = this.animationMaxX - (this.animationMaxX * scaleFactor) ;
+    var maxX = this.animationMaxX - (this.animationMaxX * scaleFactor * easedT);
     //var maxX = this.canvas.height * newScale;
     var diffX = (this.canvas.width - maxX)/2;
     maxX += diffX;
-    var maxY = this.animationMaxY - (this.animationMaxY * scaleFactor) ;
+    var maxY = this.animationMaxY - (this.animationMaxY * scaleFactor * easedT);
     //var maxY = this.canvas.width * newScale;
     var diffY = (this.canvas.height - maxY)/2;
     maxY += diffY;
@@ -62,22 +68,22 @@ var canvasFull = (function( window, document ){
     this.animationMaxY = maxY;
   };
 
-  var drawRotateAnimation = function( ctx ){
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  var drawRotateAnimation = function( ctx, easedT ){
+    ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
 
-    //ctx.rotate( -65 * Math.PI / 180 );
-    currentDegree += degreeStep;
+/*    currentDegree += degreeStep;
     if ( currentDegree > degreeLimit ){
       degreeLimit = 65;
       currentDegree = 0;
       STOP = true;
       return;
-    }
-    ctx.translate(this.canvas.width/2, this.canvas.height/2);
+    }*/
+
+    ctx.translate( this.canvas.width/2, this.canvas.height/2 );
 
     ctx.rotate( -degreeStep * Math.PI / 180 );
 
-    ctx.translate(-this.canvas.width/2, -this.canvas.height/2);
+    ctx.translate( -this.canvas.width/2, -this.canvas.height/2 );
 
     ctx.beginPath();
     ctx.moveTo( this.newZeroX, this.newZeroY );
@@ -91,19 +97,17 @@ var canvasFull = (function( window, document ){
 
   };
 
-  var drawRestoreAnimation = function(){
+  var drawRestoreAnimation = function( ctx, easedT ){
     ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-    var newScale = currentScale + (currentScale * scaleFactor);
-    currentScale = newScale;
-    var maxX = this.animationMaxX + (this.animationMaxX * scaleFactor) ;
-    //var maxX = this.canvas.height * newScale;
+    var maxX = easedT * this.animationMaxX + (this.animationMaxX * scaleFactor);
     var diffX = (this.canvas.width - maxX)/2;
     maxX += diffX;
-    var maxY = this.animationMaxY + (this.animationMaxY * scaleFactor) ;
-    //var maxY = this.canvas.width * newScale;
+
+    var maxY =  easedT * this.animationMaxY + (this.animationMaxY * scaleFactor);
     var diffY = (this.canvas.height - maxY)/2;
     maxY += diffY;
+
     this.newZeroX = diffX;
     this.newZeroY = diffY;
 
@@ -122,7 +126,6 @@ var canvasFull = (function( window, document ){
   };
 
   var cleanAnimation = function( ctx ){
-    currentScale = 1;
     degreeLimit = degreeLimit + currentDegree;
     if ( degreeLimit > 360 ){
       degreeLimit = 65;
@@ -213,10 +216,10 @@ var canvasFull = (function( window, document ){
 
   var animate = function(){
 
-    var currentTime = Date.now(),
-        time = min(1, ((currentTime - startTime) / 600));
+    var time = min(1, ((Date.now() - startTime) / DURATION)),
+        easedT = easingFunction( time );
 
-    currentAnimation( ctx );
+    currentAnimation( ctx, easedT );
 
     if ( (time < 1) && (!STOP) ){
       requestAnimationFrame( animate.bind(this) );
