@@ -5,7 +5,8 @@ var canvasFull = (function( window, document ){
   var STROKECOLOR = '#8c918d';
   var DURATION = 500; // ORIGINAL: 600ms
   var scaleFactor = 0.45;
-  var degreeStep = 2;
+  //var degreeStep = 2;
+  var degreeStep = (10 * Math.random()).toFixed();
   var degreeLimit = 10;
   var currentDegree = 0;
   var STOP = false;
@@ -81,7 +82,8 @@ var canvasFull = (function( window, document ){
 
     ctx.translate( this.canvas.width/2, this.canvas.height/2 );
 
-    ctx.rotate( -degreeStep * Math.PI / 180 );
+    //ctx.rotate( -degreeStep * Math.PI / 180 );
+    ctx.rotate( -(10 * Math.random()).toFixed() * Math.PI / 180 );
 
     ctx.translate( -this.canvas.width/2, -this.canvas.height/2 );
 
@@ -180,7 +182,7 @@ var canvasFull = (function( window, document ){
     this.canvas.height = cy;
 
     // TODO: separate this call, maybe trigger resized local event
-    ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    ctx.clearRect( 0, 0, this.canvas.width, this.canvas.height );
     cleanAnimation();
     drawIntro( ctx );
   }

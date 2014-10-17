@@ -70,9 +70,9 @@ canvas {
 article:not(#landing) {
   padding: 0;
 }
-#bio section {
-  padding: 20px;
-}
+/*#bio section
+  padding: 20px
+*/
 article,
 section,
 div,
@@ -279,9 +279,9 @@ footer {
   width: 0;
 }
 .retroShadow {
-  color: #2c2c2c;
+  color: #d5d5d5;
   letter-spacing: 0.05em;
-  text-shadow: 4px 4px 0px #d5d5d5, 2px 2px 0px rgba(0,0,0,0.2);
+  text-shadow: 4px 4px 0px #201c1c, 2px 2px 0px rgba(0,0,0,0.2);
 }
 /*******************/
 /** Media Queries **/
