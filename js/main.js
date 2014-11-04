@@ -16,14 +16,15 @@
   var posContact = contact.getBoundingClientRect();
   var HEIGHT;
   var cfIntro;
-  if( window.innerWidth )
-  {
+
+  if( window.innerWidth ){
     HEIGHT = window.innerHeight;
   } else {
-
     HEIGHT = document.body.clientHeight;
   }
+
   landing.style.height = HEIGHT + 'px';
+
   var getOffset = function( el ) {
     var _x = 0;
     var _y = 0;
@@ -40,14 +41,21 @@
     posProjects = projects.getBoundingClientRect();
     posBio = bio.getBoundingClientRect();
     posContact = contact.getBoundingClientRect();
-    if( window.innerWidth )
-    {
+
+    if ( window.innerHeight ){
       HEIGHT = window.innerHeight;
     } else {
-
       HEIGHT = document.body.clientHeight;
     }
     landing.style.height = HEIGHT + 'px';
+
+    /*if ( projects.clientHeight < HEIGHT &&
+      bio.clientHeight < HEIGHT &&
+      contact.clientHeight < HEIGHT ){
+      projects.style.height = '100%';
+      bio.style.height = '100%';
+      contact.style.height = '100%';
+    }*/
 
   }, false);
 

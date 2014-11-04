@@ -286,6 +286,27 @@ footer {
 /*******************/
 /** Media Queries **/
 /*******************/
+@media screen and (max-height: 729px) {
+  .section-link span {
+    height: 63px;
+    line-height: 63px;
+    font-size: 3em;
+  }
+  .sections-links {
+    height: 239px;
+  }
+  .sections-links:before {
+    height: 239px;
+  }
+  .sections-links:after {
+    height: 239px;
+  }
+}
+@media screen and (min-height: 650px) {
+  article:not(#landing) {
+    height: 100%;
+  }
+}
 @media screen and (min-width: 320px) and (max-width: 480px) {
   body {
     font-size: 90%;
@@ -383,9 +404,6 @@ footer {
   }
 }
 @media screen and (min-width: 750px) and (max-width: 900px) {
-  article:not(#landing) {
-    height: 100%;
-  }
   section:not(.items),
   li > * {
     text-align: justify;
@@ -396,9 +414,6 @@ footer {
   }
 }
 @media screen and (min-width: 901px) and (max-width: 1350px) {
-  article:not(#landing) {
-    height: 100%;
-  }
   section:not(.items),
   li h3,
   li p {
@@ -412,9 +427,6 @@ footer {
   }
 }
 @media screen and (min-width: 1351px) {
-  article:not(#landing) {
-    height: 100%;
-  }
   section:not(.items),
   li h3,
   li p {
