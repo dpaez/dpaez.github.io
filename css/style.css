@@ -301,6 +301,10 @@ footer {
   .sections-links:after {
     height: 239px;
   }
+  .total-center {
+    top: 35%;
+    transform: translateY(-65%);
+  }
 }
 @media screen and (min-height: 650px) {
   article:not(#landing) {
@@ -310,6 +314,10 @@ footer {
 @media screen and (min-width: 320px) and (max-width: 480px) {
   body {
     font-size: 90%;
+  }
+  .total-center {
+    top: 40%;
+    transform: translateY(-60%);
   }
   .logo {
     display: none;
@@ -371,6 +379,14 @@ footer {
     margin: 0;
   }
 }
+@media screen and (max-height: 515px) and (orientation: landscape) {
+  #landing {
+    height: initial !important;
+  }
+  .total-center {
+    transform: initial;
+  }
+}
 @media screen and (min-width: 470px) and (max-width: 750px) {
   .logo {
     display: none;
@@ -401,6 +417,10 @@ footer {
     text-align: justify;
     margin-left: auto;
     margin-right: auto;
+  }
+  .total-center {
+    top: 30%;
+    transform: translateY(-70%);
   }
 }
 @media screen and (min-width: 750px) and (max-width: 900px) {

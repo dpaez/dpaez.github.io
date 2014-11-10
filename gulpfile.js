@@ -14,10 +14,9 @@ var minifyCSS = require('gulp-minify-css');
 var concat = require('gulp-concat');
 var concatCss = require('gulp-concat-css');
 
-
 /* extra */
 var nib = require( 'nib' );
-var opn = require('opn');
+var opn = require( 'opn' );
 
 /* paths */
 var paths = {
