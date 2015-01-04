@@ -139,6 +139,18 @@ var canvasFull = (function( window, document ){
 
     window.addEventListener('resize', resize.bind( this ), false);
 
+    this.canvas = canvas;
+    ctx = canvas.getContext('2d');
+
+    var devicePixelRatio = window.devicePixelRatio || 1,
+        backingStoreRatio = ctx.webkitBackingStorePixelRatio ||
+                            ctx.mozBackingStorePixelRatio ||
+                            ctx.msBackingStorePixelRatio ||
+                            ctx.oBackingStorePixelRatio ||
+                            ctx.backingStorePixelRatio || 1,
+
+        ratio = devicePixelRatio / backingStoreRatio;
+
     if ( element.length ){
       for(var j=0;j<element.length;j++){
         element[ j ].addEventListener('mouseover', preAnimate.bind(this), false);
@@ -152,9 +164,12 @@ var canvasFull = (function( window, document ){
       return;
     }
 
-    this.canvas = canvas;
 
-    ctx = canvas.getContext('2d');
+    if ( devicePixelRatio !== backingStoreRatio ){
+      ctx.scale( 5,5 );
+      ctx.imageSmoothingEnabled = false;
+    }
+
     if ( canvas.getContext ){
       resize();
 
