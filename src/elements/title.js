@@ -20,7 +20,7 @@ const title = (state, prev, send) => {
                 <img src="https://pbs.twimg.com/profile_images/799493028348129280/FKiV5x49.jpg" class="br3 ba b--black-10 h4 w4" alt="dk, also known as deka, avatar picture">
             </div>
             <div class="dtc v-mid pl3">
-                <h2 class="f2-ns" onload=${ glitchMe }>D ㆔ K Δ</h2>
+                <h2 class="f2-ns" onload=${ glitchMe }>${state.name}</h2>
                 ${company(state, prev, send)}
             </div>
         </header>

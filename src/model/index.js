@@ -1,7 +1,7 @@
 module.exports = {
     state: {
         shortname: 'DK',
-        name: 'D ㆔ K Δ',
+        name: 'D Ξ K Δ',
         bio: 'TBD',
         tagline: 'JS developer with an eye on code maintainability. Team player. I will improve your product or team.',
         contact: {
