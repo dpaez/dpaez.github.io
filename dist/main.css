@@ -1,0 +1,78 @@
+.background {
+    /*background-image: linear-gradient(#fff6e4, #8b9da9); */
+    background: #121113;
+    box-shadow: inset 0 0 100px hsla(0,0%,0%,.3);
+}
+
+body {
+    height: 100%;
+    color: #F7F7F2
+}
+
+canvas {
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    z-index: 1;
+}
+
+article, main, section, div, h1, h2, p, aside, a {
+    position: relative;
+    z-index: 10;
+}
+
+h2 {
+    text-shadow:
+        0px 4.5px 5px rgba(33, 31, 36, 0.08), 
+        1.5px 1.5px 10px rgba(253, 251, 255, 0.92),
+        0px 2px 2px rgba(169, 167, 158, 0.84),
+        6px 5px 6px rgb(61, 15, 106), 
+        -6px -5px 9px rgba(51, 16, 86, 0.9), 
+        3.5px 3.5px 9px #fff;
+
+    -webkit-animation-name: glitch;
+
+            animation-name: glitch;
+    -webkit-animation-duration: 200ms;
+            animation-duration: 200ms;
+    -webkit-animation-delay: 4s;
+            animation-delay: 4s;
+    -webkit-animation-timing-function: cubic-bezier(.25, .46, .45, .94);
+            animation-timing-function: cubic-bezier(.25, .46, .45, .94);
+    -webkit-animation-iteration-count: 2.5;
+            animation-iteration-count: 2.5;
+    color: rgba(229, 229, 225, 0.55);
+    letter-spacing: .15em;
+    margin: 0 auto;
+}
+
+@-webkit-keyframes glitch {
+    to {
+        text-shadow: 0px 4.5px 5px rgba(33, 31, 36, 0.91),
+            1.5px 1.5px 10px rgba(253, 251, 255, 0.92),
+            0px 2px 2px rgba(169, 167, 158, 0.84),
+            6px 5px 6px rgb(61, 15, 106), 
+            -6px -5px 9px rgba(51, 16, 86, 0.9), 
+            3.5px 3.5px 9px #fff;
+    }
+}
+
+@keyframes glitch {
+    to {
+        text-shadow: 0px 4.5px 5px rgba(33, 31, 36, 0.91),
+            1.5px 1.5px 10px rgba(253, 251, 255, 0.92),
+            0px 2px 2px rgba(169, 167, 158, 0.84),
+            6px 5px 6px rgb(61, 15, 106), 
+            -6px -5px 9px rgba(51, 16, 86, 0.9), 
+            3.5px 3.5px 9px #fff;
+    }
+}
