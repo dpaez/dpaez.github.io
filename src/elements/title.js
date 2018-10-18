@@ -17,7 +17,7 @@ const title = (state, prev, send) => {
     return html`
         <header class="dt mw6">
             <div class="dtc v-mid">
-                <img src="https://pbs.twimg.com/profile_images/799493028348129280/FKiV5x49.jpg" class="br3 ba b--black-10 h4 w4" alt="dk, also known as deka, avatar picture">
+                <img src="https://pbs.twimg.com/profile_images/1015035465655836672/x0QpBkc4_400x400.jpg" class="br3 ba b--black-10 h4 w4" alt="dk, also known as deka, avatar picture">
             </div>
             <div class="dtc v-mid pl3">
                 <h2 class="f2-ns" onload=${ glitchMe }>${state.name}</h2>
