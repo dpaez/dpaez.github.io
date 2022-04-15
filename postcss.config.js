@@ -1,5 +1,6 @@
 module.exports = {
-    use: ['autoprefixer', 'cssnano'],
-    input: 'src/index.css',
-    output: 'dist/main.css'
-};
+  plugins: {
+    tailwindcss: { config: './tailwindcss-config.js' },
+    autoprefixer: {},
+  }
+}

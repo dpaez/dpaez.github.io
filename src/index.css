@@ -1,58 +1,97 @@
-.background {
-    /*background-image: linear-gradient(#fff6e4, #8b9da9); */
-    background: #121113;
-    box-shadow: inset 0 0 100px hsla(0,0%,0%,.3);
-}
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@700;900&family=Inter:wght@200;400&display=swap');
 
-body {
-    height: 100%;
-    color: #F7F7F2
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-canvas {
-    position: absolute;
-    left: 0px;
-    right: 0px;
-    top: 0px;
-    bottom: 0px;
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    user-select: none;
-    z-index: 1;
-}
+@layer components {
+  .card {
+    @apply text-light my-2 ml-2 lg:m-4 p-6;
+  }
 
-article, main, section, div, h1, h2, p, aside, a {
-    position: relative;
-    z-index: 10;
-}
+  .header-normal {
+    @apply transition-[height] duration-200 h-20;
+  }
 
-h2 {
-    text-shadow:
-        0px 4.5px 5px rgba(33, 31, 36, 0.08), 
-        1.5px 1.5px 10px rgba(253, 251, 255, 0.92),
-        0px 2px 2px rgba(169, 167, 158, 0.84),
-        6px 5px 6px rgb(61, 15, 106), 
-        -6px -5px 9px rgba(51, 16, 86, 0.9), 
-        3.5px 3.5px 9px #fff;
+  .header-max {
+    @apply transition-[height] duration-500 h-72 md:h-96 lg:h-128 ;
+  }
 
-    animation-name: glitch;
-    animation-duration: 200ms;
-    animation-delay: 4s;
-    animation-timing-function: cubic-bezier(.25, .46, .45, .94);
-    animation-iteration-count: 2.5;
-    color: rgba(229, 229, 225, 0.55);
-    letter-spacing: .15em;
-    margin: 0 auto;
-}
+  .header-normal .header-normal-logo {
+    @apply transition-all ease-in-out transform-gpu duration-200 h-8 -translate-x-28 md:-translate-x-56 lg:-translate-x-96;
+  }
 
-@keyframes glitch {
-    to {
-        text-shadow: 0px 4.5px 5px rgba(33, 31, 36, 0.91),
-            1.5px 1.5px 10px rgba(253, 251, 255, 0.92),
-            0px 2px 2px rgba(169, 167, 158, 0.84),
-            6px 5px 6px rgb(61, 15, 106), 
-            -6px -5px 9px rgba(51, 16, 86, 0.9), 
-            3.5px 3.5px 9px #fff;
-    }
+  .header-normal .header-normal-deka {
+    @apply transition-all ease-in-out transform-gpu duration-200 w-12 h-12 z-0 translate-x-28 md:translate-x-56 lg:translate-x-96;
+  }
+
+  .header-normal .header-normal-deka > img {
+    @apply h-12 w-12 delay-100 duration-200 transition-opacity opacity-100;
+  }
+
+  .header-max .header-max-logo {
+    @apply transition-all ease-out duration-300 h-12 md:h-20 lg:h-24;
+  }
+
+  .header-max .header-max-deka {
+    @apply transition-all ease-out duration-300 w-24 h-24 md:w-48 md:h-48 mx-auto;
+  }
+
+  .header-max .header-max-deka > img {
+    @apply transition-all duration-100 w-24 h-24 md:w-48 md:h-48 opacity-0;
+  }
+
+  .title {
+    @apply hidden;
+  }
+
+
+  .card code {
+    @apply text-light;
+  }
+
+  .card strong {
+    @apply text-light font-normal;
+  }
+
+  .card > h2 {
+    @apply font-heebo mt-1 mb-1 text-light text-5xl font-black tracking-wider;
+  }
+
+  .card-content {
+    @apply font-inter font-extralight;  
+  }
+
+  .card-content a {
+    @apply text-light tracking-wide decoration-2 underline underline-offset-2 decoration-accent hover:bg-secondary;
+  }
+
+  .card-content hr {
+    @apply w-24 mx-auto border-accent border-dashed border-2;
+  }
+
+  .card-content img {
+    @apply border-4 rounded-lg border-accent;
+  }
+
+  .card-content code {
+    @apply bg-dark/30 rounded-lg p-1;
+  }
+
+  .card-content h3 {
+    @apply font-heebo font-bold mt-1 mb-1 text-light tracking-wide; 
+  }
+
+  .card-content blockquote {
+    @apply font-inter italic text-secondary;
+  }
+
+
+  .card-content ul {
+    @apply pl-0 divide-y mb-8;
+  }
+
+  .card-content h3 > * {
+    @apply divide-y;
+  }
 }
