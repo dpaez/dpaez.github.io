@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+  <head>
+    <title>D E K A</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="utf-8">
+    <meta name="author" content="D E K A">
+    <meta name="description" content="Personal website for DEKA. DEKA (DK) is Diego Paez a JavaScript/Node developer with a passion for distributed systems and HCI">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/assets/manifest.json">
+    <link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#a463f2">
+    <link rel="shortcut icon" href="/assets/favicon.ico">
+    <meta name="msapplication-config" content="/assets/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <meta property="og:url" content="https://dpaez.github.io">
+    <meta property="og:title" content="D E K A">
+    <meta property="og:description" content="Personal website for DEKA. DEKA is Diego Paez, JavaScript/Node.js developer with a passion for distributed systems and HCI">
+    <meta property="og:image" content="https://dpaez.github.io/assets/deka.png">
+    <link href="output.css" rel="stylesheet">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@carax">
+    <meta name="twitter:title" content="D E K A">
+    <meta name="twitter:description" content="deka personal website, deka (DK) is Diego Paez a developer and words rambler, gambler">
+    <meta name="twitter:image" content="https://dpaez.github.io/assets/deka.png">
+  </head>
+  <body id="body-container" class="bg-main flex flex-col">
+    <header class="flex scroll-mt-0 header-max mb-10 py-4 items-center mx-auto  justify-center w-full sticky top-0 left-0 z-40 bg-main shadow-sm shadow-light">
+      <div class="flex relative items-center justify-center w-full">
+        <svg id="logo" class="absolute header-max-logo fill-transparent stroke-light z-40" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"  viewBox="670 185 380 295" preserveAspectRatio="xMidYMid meet" >
+          <g >
+            <path d="" style="stroke-width: 3; stroke-linecap: square; stroke-linejoin: miter; "></path><path d="M675,420 L675,420 L675,240 L810,420 Z M1005,420 L1005,420 L945,345 L975,345 L1035,420 Z M945,330 L945,330 L1005,255 L1035,255 L975,330 Z M885,465 L885,465 L885,240 L915,210 L915,435 Z " style="stroke-width: 10; stroke-linecap: round; stroke-linejoin: miter;"></path><path d="" style="stroke-width: 27; stroke-linecap: round; stroke-linejoin: miter; fill: none;"></path>
+          </g>
+        </svg>
+        <!-- DEKA DRAWING -->
+        <div id="deka" class="absolute bg-accent rounded-full z-20 header-max-deka shadow-lg shadow-accent/50 ">
+          <img class="z-10 rounded-full border-2 border-accent" src="assets/deka-draw-512.png" alt="handsome deka drawing"/>
+        </div>
+      </div>
+    </header>
+    <div class="flex justify-center items-center text-2xl text-secondary -mt-5 animate-pulse">⇓</div>
+    <article class="flex flex-col md:flex-1 md:flex-row md:overflow-hidden max-w-screen-2xl mx-auto mt-20">
+      <section class="flex flex-1 flex-col scroll-mt-50">
+        <div class="flex flex-1 flex-col overflow-y-auto max-w-4xl prose sm:prose-sm lg:prose-xl prose-headings:uppercase prose-ul:list-outside prose-ul:list-none prose-ul:pl-0"> 
+          <%- data.content %>
+        </div>
+      </section>
+    </article>
+
+    <footer class="mt-8 flex flex-col items-center justify-center text-light mx-auto">
+      <div class="w-24 mb-0 mt-0 border border-solid border-secondary"></div>
+      <h6 class="font-inter py-8 text-transparent text-2xl bg-clip-text bg-gradient-to-b from-light via-secondary to-accent">D Ξ K Δ - '22</h6>
+    </footer>
+    <script>
+
+      function throttle(func, wait = 100) {
+        var timer = null;
+        return function(...args) {
+          if (timer === null) {
+            timer = setTimeout(() => {
+              func.apply(this, args);
+              timer = null;
+              return;
+            }, wait); 
+          }
+        };
+      }
+
+  
+      var header = document.querySelector('header')
+      var logo = document.querySelector('#logo')
+      var drawing = document.querySelector('#deka')
+
+      var headerOffset = 25
+      var goToHeaderMax = false
+      var wScrollPrev = 9999
+      var minimizing = false
+
+      function scrollFunction () {     
+        if (minimizing) return
+        var wScrollCurrent = window.pageYOffset; 
+
+        if (wScrollCurrent > 200) {
+          goToHeaderMax = true
+        }
+
+        setTimeout(function() {
+          minimizing = false
+        }, 500)
+
+        if (wScrollCurrent > headerOffset) {
+          if (header.classList.contains('header-max')) {
+            minimizing = true
+            header.classList.replace('header-max', 'header-normal');
+            logo.classList.replace('header-max-logo', 'header-normal-logo')
+            drawing.classList.replace('header-max-deka', 'header-normal-deka')
+            goToHeaderMax = true
+          } 
+        } else {
+          if ((wScrollCurrent < wScrollPrev) && goToHeaderMax) {
+            if (header.classList.contains('header-normal')) {
+              header.classList.replace('header-normal', 'header-max');
+              logo.classList.replace('header-normal-logo', 'header-max-logo')
+              drawing.classList.replace('header-normal-deka', 'header-max-deka')
+              goToHeaderMax = false
+            }
+          }          
+        }
+        wScrollPrev = wScrollCurrent
+      }
+  
+      var scrollFnThrottled = throttle(scrollFunction, 150);
+      window.addEventListener('scroll', scrollFnThrottled);
+    </script>
+  </body>
+</html>
+
