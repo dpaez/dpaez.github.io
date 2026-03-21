@@ -2,6 +2,8 @@
 import Layout from "../layouts/Layout.astro"
 import { Navigation } from "../components/ui/Navigation"
 import { Hero } from "../components/Hero"
+import { ThemeNavShell } from "../components/ui/ThemeNavShell"
+
 
 const currentPath = Astro.url.pathname
 ---
@@ -10,7 +12,7 @@ const currentPath = Astro.url.pathname
   title="DΞKΔ | Diego Paez"
   description="Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA)."
 >
-  <Navigation currentPath={currentPath} />
+  <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide">
     <Hero currentPath={currentPath} />
   </main>

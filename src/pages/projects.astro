@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { Navigation } from "@/components/ui/Navigation"
+import { Card } from "local-components/card"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
 
 const currentPath = Astro.url.pathname
 ---
@@ -9,18 +10,18 @@ const currentPath = Astro.url.pathname
   title="Projects | DΞKΔ"
   description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, and fullstack development work."
 >
-  <Navigation client:load currentPath={currentPath} />
+  <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide" class="container py-12">
     <div class="max-w-4xl mx-auto text-center">
       <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
       <p class="text-lg text-muted-foreground">
         A selection of my work in P2P systems, distributed applications, and fullstack development.
       </p>
-      <div class="mt-12 p-8 border border-border rounded-lg bg-muted/50">
+      <Card className="mt-12">
         <p class="text-muted-foreground">
           Projects coming soon. Check back for updates on SHER, GEUT, and more.
         </p>
-      </div>
+      </Card>
     </div>
   </main>
   <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">

@@ -16,6 +16,7 @@
 
 - **Tailwind CSS 4.x** - CSS-first configuration with OKLCH colors
 - **local-components 0.1.0-alpha.4** - UI component library
+- **Lucide icons** - Reference icons library
 
 ### Build & Development Tools
 

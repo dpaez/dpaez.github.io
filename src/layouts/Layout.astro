@@ -53,21 +53,12 @@ const canonicalUrl = new URL(Astro.url.pathname, Astro.site || "https://dpaez.gi
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     
-    <!-- Theme initialization script (prevents FOUC) -->
-    <script is:inline>
-      (function() {
-        const theme = localStorage.getItem('theme') || 
-          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
-        document.documentElement.classList.toggle('dark', theme === 'dark')
-      })()
-    </script>
-    
     <!-- View Transitions -->
     <ClientRouter />
   </head>
   <body class="min-h-screen bg-background text-foreground antialiased">
-    <AppLayout padding="none" maxWidth="full" client:only="react">
+    <AppLayout padding="none" maxWidth="full">
       <slot />
     </AppLayout>
-  </body>
+]  </body>
 </html>

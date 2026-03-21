@@ -18,6 +18,5 @@
       "@/content/*": ["./src/content/*"]
     },
     "baseUrl": ".",
-    "types": ["bun-types"]
   }
 }

@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { Navigation } from "@/components/ui/Navigation"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { Card } from "local-components/card"
 
 const currentPath = Astro.url.pathname
 ---
@@ -9,45 +10,26 @@ const currentPath = Astro.url.pathname
   title="About | DΞKΔ"
   description="About Diego Paez (DEKA). Background, experience, and conference talks."
 >
-  <Navigation client:load currentPath={currentPath} />
+  <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide" class="container py-12">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold tracking-tight mb-8 text-center">About</h1>
       
       <div class="space-y-8">
-        <section class="p-6 border border-border rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">Bio</h2>
-          <p class="text-muted-foreground">
-            Hi, I'm Diego also known as DEKA | DK (he/him). Class '85. Natural from Tierra del Fuego, Patagonia, Argentina.
-          </p>
-        </section>
+        <Card title="Bio" description="Hi, I'm Diego also known as DEKA | DK (he/him). Class '85. Natural from Tierra del Fuego, Patagonia, Argentina." />
         
-        <section class="p-6 border border-border rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">Background</h2>
-          <p class="text-muted-foreground">
-            I have a Licentiate's Degree in Computer Science from the National University of La Plata, UNLP - Informática.
-          </p>
-        </section>
+        <Card title="Background" description="I have a Licentiate's Degree in Computer Science from the National University of La Plata, UNLP - Informática." />
         
-        <section class="p-6 border border-border rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">Talks</h2>
-          <p class="text-muted-foreground">
-            Conference talks and workshops coming soon. Including NodeConf Colombia 2019, NodeConf Argentina 2018 & 2016.
-          </p>
-        </section>
+        <Card title="Talks" description="Conference talks and workshops coming soon. Including NodeConf Colombia 2019, NodeConf Argentina 2018 & 2016." />
         
-        <section class="p-6 border border-border rounded-lg">
-          <h2 class="text-2xl font-semibold mb-4">Contact</h2>
-          <p class="text-muted-foreground">
-            You can reach me at diego at geutstudio . com
-          </p>
+        <Card title="Contact" description="You can reach me at diego at geutstudio . com">
           <div class="flex gap-4 mt-4">
             <a href="https://twitter.com/carax" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">Twitter</a>
             <a href="https://github.com/dpaez" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">GitHub</a>
             <a href="https://geutstudio.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">GEUT</a>
             <a href="https://sher.geutstudio.com" target="_blank" rel="noopener noreferrer" class="text-primary hover:underline">SHER</a>
           </div>
-        </section>
+        </Card>
       </div>
     </div>
   </main>

@@ -1,6 +1,7 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { Navigation } from "@/components/ui/Navigation"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { Card } from "local-components/card"
 
 const currentPath = Astro.url.pathname
 ---
@@ -9,7 +10,7 @@ const currentPath = Astro.url.pathname
   title="Blog | DΞKΔ"
   description="Technical blog by Diego Paez (DEKA). Thoughts on P2P, distributed systems, and software development."
 >
-  <Navigation client:load currentPath={currentPath} />
+  <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide" class="container py-12">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl font-bold tracking-tight mb-4 text-center">Blog</h1>
@@ -17,11 +18,11 @@ const currentPath = Astro.url.pathname
         Thoughts on P2P systems, distributed computing, and software development.
       </p>
       
-      <div class="p-8 border border-border rounded-lg bg-muted/50 text-center">
-        <p class="text-muted-foreground">
+      <Card>
+        <p class="text-muted-foreground text-center">
           Blog posts coming soon. Check back for technical insights and updates.
         </p>
-      </div>
+      </Card>
     </div>
   </main>
   <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
