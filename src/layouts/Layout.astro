@@ -1,0 +1,73 @@
+---
+import "../styles/global.css"
+import "local-components/styles/globals.css"
+import { Layout as AppLayout } from "local-components/layout"
+
+import { ClientRouter } from "astro:transitions"
+
+interface Props {
+  title?: string
+  description?: string
+  ogImage?: string
+}
+
+const { 
+  title = "DΞKΔ | Diego Paez",
+  description = "Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA).",
+  ogImage = "/assets/deka.png"
+} = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || "https://dpaez.github.io").toString()
+---
+
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
+    <link rel="manifest" href="/assets/manifest.json" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Diego Paez" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Open Graph -->
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@carax" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- Theme initialization script (prevents FOUC) -->
+    <script is:inline>
+      (function() {
+        const theme = localStorage.getItem('theme') || 
+          (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+        document.documentElement.classList.toggle('dark', theme === 'dark')
+      })()
+    </script>
+    
+    <!-- View Transitions -->
+    <ClientRouter />
+  </head>
+  <body class="min-h-screen bg-background text-foreground antialiased">
+    <AppLayout padding="none" maxWidth="full" client:only="react">
+      <slot />
+    </AppLayout>
+  </body>
+</html>

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "skills": {
+    "fullstack-skill": {
+      "source": "geut/fullstack-skill",
+      "sourceType": "github",
+      "computedHash": "3714622fb12a946388c49bf6639d06a27fdb61cb05b85d03c4a467defaa6ced1"
+    },
+    "prd-to-plan": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "computedHash": "b0fad4a6e8097a5095fe00bfc2ebd98827c2d599e8b0a974c9d3c50b59295ac8"
+    },
+    "write-a-prd": {
+      "source": "mattpocock/skills",
+      "sourceType": "github",
+      "computedHash": "d03d51db8cfd3dd5c27f9b8e1ffe61686391fdbd62bf4cb2f47db7e62ee68cd2"
+    }
+  }
+}

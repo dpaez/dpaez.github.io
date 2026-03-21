@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro"
+import { Navigation } from "../components/ui/Navigation"
+import { Hero } from "../components/Hero"
+
+const currentPath = Astro.url.pathname
+---
+
+<Layout 
+  title="DΞKΔ | Diego Paez"
+  description="Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA)."
+>
+  <Navigation currentPath={currentPath} />
+  <main transition:animate="slide">
+    <Hero currentPath={currentPath} />
+  </main>
+  <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground">
+    <div class="container">
+      <p>© {new Date().getFullYear()} DΞKΔ. Built with Astro & React.</p>
+      <p class="mt-1">La Plata, Buenos Aires, Argentina</p>
+    </div>
+  </footer>
+</Layout>

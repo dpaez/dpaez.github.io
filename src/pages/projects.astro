@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { Navigation } from "@/components/ui/Navigation"
+
+const currentPath = Astro.url.pathname
+---
+
+<Layout 
+  title="Projects | DΞKΔ"
+  description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, and fullstack development work."
+>
+  <Navigation client:load currentPath={currentPath} />
+  <main transition:animate="slide" class="container py-12">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
+      <p class="text-lg text-muted-foreground">
+        A selection of my work in P2P systems, distributed applications, and fullstack development.
+      </p>
+      <div class="mt-12 p-8 border border-border rounded-lg bg-muted/50">
+        <p class="text-muted-foreground">
+          Projects coming soon. Check back for updates on SHER, GEUT, and more.
+        </p>
+      </div>
+    </div>
+  </main>
+  <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
+    <div class="container">
+      <p>© {new Date().getFullYear()} DΞKΔ. Built with Astro & React.</p>
+    </div>
+  </footer>
+</Layout>
