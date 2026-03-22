@@ -14,8 +14,6 @@ const currentPath = Astro.url.pathname
   <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide" class="container py-12">
     <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold tracking-tight mb-8 text-center">About</h1>
-      
       <div class="space-y-12">
         <AboutContent client:load />
         <TalksSection client:load />
