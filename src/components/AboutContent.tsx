@@ -7,6 +7,8 @@ import { aboutData } from "@/data/about"
 import { experienceData } from "@/data/experience"
 import { linksData } from "@/data/links"
 import { areasOfInterestData } from "@/data/areas-of-interest"
+import { Heading } from "local-components/typography/heading"
+import { Text } from "local-components/typography/text"
 
 export function AboutContent() {
   return (
@@ -14,18 +16,13 @@ export function AboutContent() {
       <Section title="About">
         <div className="flex flex-col gap-8">
           {/* Bio Card */}
-          <Card title="About" className="prose dark:prose-invert max-w-none">
+          <Card title="BIO" className="prose dark:prose-invert max-w-none" description={aboutData.bio}>
             <div className="space-y-4">
-              <p>
-                Hi, I'm <strong>{aboutData.name}</strong> also known as <code>{aboutData.handle}</code> (
-                {aboutData.pronouns}). {aboutData.birthYear}. Natural from Tierra del Fuego, Patagonia, Argentina. Based
-                on {aboutData.location}.
-              </p>
               <p>{aboutData.education}</p>
               <p>{aboutData.currentFocus}</p>
-              <Blockquote>{aboutData.quote}</Blockquote>
             </div>
           </Card>
+          <Blockquote>{aboutData.quote}</Blockquote>
           {/* Contact & Links */}
           <Card variant="ghost" title="Contact & Links">
             <p className="text-muted-foreground mb-4">
@@ -49,22 +46,23 @@ export function AboutContent() {
           {experienceData.map((exp) => (
             <Card
               key={exp.id}
-              variant="outline"
+              variant="bordered"
               className="space-y-6"
-              title={exp.company}
-              badge={<Badge variant="secondary">{exp.type}</Badge>}
+              title={<Heading as="h3">{exp.company}</Heading>}
+              badge={<Badge variant="secondary">{exp.role}</Badge>}
             >
               <div key={exp.id} className="border-b border-border pb-4 last:border-0">
-                <div className="flex justify-between items-start mb-2">
-                  <div>
-                    <p className="text-muted-foreground">
-                      {exp.role} • {exp.period}
-                    </p>
-                  </div>
+                <div className="flex flex-col items-start mb-2">
+                  <Heading as="h5" className="text-muted-foreground font-mono">
+                    {exp.period}
+                  </Heading>
                 </div>
-                <p className="text-muted-foreground mb-2">{exp.description}</p>
+                <Text className="text-muted-foreground mb-2">{exp.description}</Text>
                 {exp.highlights && (
-                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                  <ul
+                    role="list"
+                    className="list-(--list-bullet) marker:text-(--primary) list-inside text-sm space-y-1"
+                  >
                     {exp.highlights.map((highlight, idx) => (
                       <li key={idx}>{highlight}</li>
                     ))}
@@ -77,11 +75,10 @@ export function AboutContent() {
       </Section>
       {/* Areas of Interest */}
       <Section title="Areas of Interest" className="space-y-8">
-        <Card variant="outline">
-          <p className="text-muted-foreground mb-4">
-            Areas of focus drawn from past roles and ongoing interest: full‑stack engineering, tailored JavaScript
-            solutions, distributed systems, P2P‑powered products and agents development cycles and harness engineering.
-          </p>
+        <Card
+          description="Areas of focus drawn from past roles and ongoing interest: full‑stack engineering, tailored JavaScript
+            solutions, distributed systems, P2P‑powered products and agents development cycles and harness engineering."
+        >
           <div className="flex flex-wrap gap-2">
             {areasOfInterestData.map((area) => (
               <Badge key={area.id} variant="outline">

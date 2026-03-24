@@ -1,27 +1,27 @@
 ---
 import Layout from "@/layouts/Layout.astro"
-import { Card } from "local-components/card"
 import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { ProjectsGrid } from "@/components/ProjectsGrid"
 
 const currentPath = Astro.url.pathname
 ---
 
 <Layout 
   title="Projects | DΞKΔ"
-  description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, and fullstack development work."
+  description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, Despegar, and more."
 >
   <ThemeNavShell client:load currentPath={currentPath} />
   <main transition:animate="slide" class="container py-12">
-    <div class="max-w-4xl mx-auto text-center">
-      <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
-      <p class="text-lg text-muted-foreground">
-        A selection of my work in P2P systems, distributed applications, and fullstack development.
-      </p>
-      <Card className="mt-12">
-        <p class="text-muted-foreground">
-          Projects coming soon. Check back for updates on SHER, GEUT, and more.
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          A selection of my work in P2P systems, distributed applications, 
+          and fullstack development. From live audio streaming to component architectures.
         </p>
-      </Card>
+      </div>
+      
+      <ProjectsGrid client:load />
     </div>
   </main>
   <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
