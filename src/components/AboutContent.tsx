@@ -9,38 +9,51 @@ import { linksData } from "@/data/links"
 import { areasOfInterestData } from "@/data/areas-of-interest"
 import { Heading } from "local-components/typography/heading"
 import { Text } from "local-components/typography/text"
+import { Code } from "local-components/typography/code"
 
 export function AboutContent() {
   return (
     <>
-      <Section title="About">
+      <Section id="bio">
         <div className="flex flex-col gap-8">
           {/* Bio Card */}
-          <Card title="BIO" className="prose dark:prose-invert max-w-none" description={aboutData.bio}>
+          <Card
+            title={
+              <Heading as="h4" className="tracking-wide">
+                BIO
+              </Heading>
+            }
+            className=" max-w-none"
+            description={<Text color="muted">{aboutData.bio}</Text>}
+            image={{ src: aboutData.image, alt: "Diego Paez Profile Picture" }}
+            style={{ objectPosition: "top" }}
+          >
             <div className="space-y-4">
-              <p>{aboutData.education}</p>
-              <p>{aboutData.currentFocus}</p>
+              <Text>{aboutData.education}</Text>
+              <Text>{aboutData.currentFocus}</Text>
             </div>
           </Card>
           <Blockquote>{aboutData.quote}</Blockquote>
-          {/* Contact & Links */}
-          <Card variant="ghost" title="Contact & Links">
-            <p className="text-muted-foreground mb-4">
-              You can reach me at <code className="bg-muted px-1 py-0.5 rounded">diego at geutstudio dot com</code>
-            </p>
-            <div className="flex flex-wrap gap-2">
-              {linksData.map((link) => (
-                <Button key={link.id} variant="ghost" asChild>
-                  <a href={link.url} target="_blank" rel="noopener noreferrer">
-                    {link.label}
-                  </a>
-                </Button>
-              ))}
-            </div>
-          </Card>
         </div>
       </Section>
-      <Section title="Experience">
+      <Section id="connect" title="Connect" background="alternate">
+        {/* Contact & Links */}
+        <Card variant="elevated" title={<Heading as="h4">Got a project → Drop me a line</Heading>}>
+          <Text className="text-lg mb-4">
+            Reach me at <Code>diego at geutstudio dot com</Code>
+          </Text>
+          <div className="flex flex-wrap gap-2">
+            {linksData.map((link) => (
+              <Button key={link.id} variant="outline" asChild>
+                <a href={link.url} target="_blank" rel="noopener noreferrer">
+                  {link.label}
+                </a>
+              </Button>
+            ))}
+          </div>
+        </Card>
+      </Section>
+      <Section id="experience" title="Experience">
         {/* Experience Section */}
         <div className="flex flex-col gap-4">
           {experienceData.map((exp) => (
@@ -48,7 +61,7 @@ export function AboutContent() {
               key={exp.id}
               variant="bordered"
               className="space-y-6"
-              title={<Heading as="h3">{exp.company}</Heading>}
+              title={<Heading as="h4">{exp.company}</Heading>}
               badge={<Badge variant="secondary">{exp.role}</Badge>}
             >
               <div key={exp.id} className="border-b border-border pb-4 last:border-0">
@@ -61,7 +74,7 @@ export function AboutContent() {
                 {exp.highlights && (
                   <ul
                     role="list"
-                    className="list-(--list-bullet) marker:text-(--primary) list-inside text-sm space-y-1"
+                    className="list-(--list-bullet) marker:text-primary-300 font-mono font-thin text-primary-400 list-inside text-sm space-y-1"
                   >
                     {exp.highlights.map((highlight, idx) => (
                       <li key={idx}>{highlight}</li>

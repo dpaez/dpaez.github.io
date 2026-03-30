@@ -9,6 +9,7 @@ export function ThemeToggle() {
       variant="switch"
       checked={theme === "dark"}
       onCheckedChange={toggleTheme}
+      className="*:dark:bg-foreground"
       aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     />
   )

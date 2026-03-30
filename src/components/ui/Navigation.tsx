@@ -1,7 +1,8 @@
-import { useState, useCallback } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { Button } from "local-components/button"
 import { ThemeToggle } from "./ThemeToggle"
 import { cn } from "local-components/utils"
+import { MenuIcon, XIcon as CloseIcon } from "lucide-react"
 
 interface NavLink {
   href: string
@@ -15,12 +16,15 @@ const navLinks: NavLink[] = [
   { href: "/blog", label: "Blog" },
 ]
 
-interface NavigationProps {
-  currentPath?: string
-}
-
-export function Navigation({ currentPath = "/" }: NavigationProps) {
+export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  useEffect(() => {
+    document.addEventListener("astro:after-swap", () => {
+      setCurrentPath(window.location.pathname)
+    })
+  }, [document])
 
   const toggleMenu = useCallback(() => {
     setIsMenuOpen((prev) => !prev)
@@ -31,29 +35,25 @@ export function Navigation({ currentPath = "/" }: NavigationProps) {
   }, [])
 
   return (
-    <header className="sticky top-0 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
-      <div className="container flex h-14 items-center justify-between px-4">
-        {/* Logo */}
-        <a
-          href="/"
-          className="flex items-center space-x-2 text-lg font-bold tracking-tight transition-colors hover:text-primary"
-          aria-label="DΞKΔ Home"
-        >
-          <span className="font-mono">DΞKΔ</span>
-        </a>
+    <header className="relative flex items-center justify-end h-12 z-40 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
+      {/* Desktop Navigation */}
+      <nav className="hidden md:flex items-end justify-end space-x-2 pr-8">
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.href}
+            href={link.href}
+            label={link.label}
+            isActive={currentPath === link.href || (link.href === "/blog" && currentPath.startsWith(link.href))}
+          />
+        ))}
+        <div className="ml-4 border-l border-border pl-4">
+          <ThemeToggle />
+        </div>
+      </nav>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-6">
-          {navLinks.map((link) => (
-            <NavLink key={link.href} href={link.href} label={link.label} isActive={currentPath === link.href} />
-          ))}
-          <div className="ml-4 border-l border-border pl-4">
-            <ThemeToggle />
-          </div>
-        </nav>
-
-        {/* Mobile Menu Button */}
-        <div className="flex items-center space-x-2 md:hidden">
+      {/* Mobile Menu Button */}
+      <div className="md:hidden">
+        <div className="flex justify-end items-center space-x-2">
           <ThemeToggle />
           <Button
             variant="ghost"
@@ -61,24 +61,34 @@ export function Navigation({ currentPath = "/" }: NavigationProps) {
             onClick={toggleMenu}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-menu"
+            className="z-50"
             aria-label={isMenuOpen ? "Close menu" : "Open menu"}
           >
-            {isMenuOpen ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
+            {isMenuOpen ? (
+              <CloseIcon className="size-6! text-primary-400 stroke-3" />
+            ) : (
+              <MenuIcon className="size-6! text-primary-400 stroke-3" />
+            )}
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div id="mobile-menu" className="md:hidden border-t border-border bg-background px-4 py-4">
-          <nav className="flex flex-col space-y-4">
+        <div
+          id="mobile-menu"
+          className="md:hidden absolute top-0 right-0 w-full border-t border-border bg-background px-4 py-4"
+        >
+          <nav className="flex flex-col space-y-4 border-b border-border pb-4">
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
                 onClick={closeMenu}
-                className={`text-sm font-medium transition-colors hover:text-primary ${
-                  currentPath === link.href ? "text-primary" : "text-muted-foreground"
+                className={`text-sm uppercase font-mono font-bold tracking-wide transition-colors  hover:text-secondary-300   ${
+                  currentPath === link.href || (link.href === "/blog" && currentPath.startsWith(link.href))
+                    ? "text-secondary"
+                    : "text-muted-foreground"
                 }`}
               >
                 {link.label}
@@ -97,52 +107,11 @@ function NavLink({ href, label, isActive }: { href: string; label: string; isAct
       <a
         href={href}
         className={cn(
-          `text-sm font-medium transition-colors hover:text-primary ${isActive ? "font-bold" : "font-normal"}`,
+          `text-base font-mono tracking-wide transition-colors uppercase hover:text-primary dark:hover:text-secondary-500 ${isActive ? "font-bold text-secondary" : "font-normal text-muted-foreground"}`,
         )}
       >
         {label}
       </a>
     </Button>
-  )
-}
-
-function MenuIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <line x1="4" x2="20" y1="12" y2="12" />
-      <line x1="4" x2="20" y1="6" y2="6" />
-      <line x1="4" x2="20" y1="18" y2="18" />
-    </svg>
-  )
-}
-
-function CloseIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M18 6 6 18" />
-      <path d="m6 6 12 12" />
-    </svg>
   )
 }

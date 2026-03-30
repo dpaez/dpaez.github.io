@@ -27,14 +27,14 @@ export const experienceData: Experience[] = [
   {
     id: "alliants",
     company: "Alliants",
-    role: "Staff Augmentation / Full-Stack Engineer",
+    role: "Full-stack Engineer",
     type: "contract",
     period: "2022 - 2025",
     description:
       "Worked inside an established product team, moving fast across the stack—from developer tooling and bundling to shipping meaningful frontend performance wins.",
     highlights: [
       "Staff-augmentation",
-      "Worked across the full stack from developer tooling to fullstack development and performance optimizations",
+      "Worked across the whole stack from developer tooling to full-stack development and performance optimizations",
       "Shipped meaningful performance improvements",
     ],
   },
@@ -56,15 +56,15 @@ export const experienceData: Experience[] = [
   {
     id: "despegar",
     company: "Despegar",
-    role: "Fullstack Engineer",
+    role: "Full-stack Engineer",
     type: "fulltime",
     period: "2015-2018",
     description:
-      'Worked as Fullstack Engineer on projects including a "components as a service" system that was rendered and consumed by different teams across the company.',
+      'Worked as Full-stack Engineer on projects including a "components as a service" system that was rendered and consumed by different teams across the company.',
     highlights: [
       "Built components as a service architecture",
       "Cross-team integration and consumption patterns",
-      "Large-scale fullstack development",
+      "Large-scale full-stack development",
     ],
   },
   {

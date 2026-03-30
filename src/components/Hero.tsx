@@ -1,58 +1,88 @@
 import { Button } from "local-components/button"
+import Logo from "./ui/Logo"
 
-interface HeroProps {
-  currentPath?: string
+import XTwitterIcon from "./ui/icons/x"
+import GeutIcon from "./ui/icons/geut"
+
+import { Text } from "local-components/typography/text"
+import { Badge } from "local-components/badge"
+
+const Separator = () => {
+  return <span className="text-secondary-500 font-extralight text-2xl">/</span>
 }
 
-export function Hero({ currentPath = "/" }: HeroProps) {
+export function Hero() {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh]">
-      <div className="flex flex-col items-center space-y-8 text-center">
-        {/* Brand Logo */}
-        <div className="font-mono text-6xl md:text-8xl font-bold tracking-tighter">DΞKΔ</div>
+    <div className="flex flex-1 min-h-0 flex-col px-8 justify-between">
+      <a href="/" className="flex items-center tracking-tight transition-colors" aria-label="DΞKΔ Home">
+        <Logo className="text-6xl md:text-9xl" />
+      </a>
 
-        {/* Tagline */}
-        <p className="text-xl md:text-2xl text-muted-foreground max-w-lg">Developer, P2P Enthusiast, Entrepreneur</p>
+      <div className="max-w-360 mx-auto px-1 w-full">
+        <div className="grid grid-cols-1 xl:grid-cols-3 items-center gap-4 pb-8">
+          {/* Tagline */}
+          <Text
+            size="sm"
+            className="flex items-start xl:items-center flex-col md:flex-row md:gap-1 font-sans tracking-wide text-primary-400"
+          >
+            <span className="flex items-center gap-1">
+              Developer <Separator />
+            </span>{" "}
+            <span className="flex items-center gap-1">
+              P2P Enthusiast <Separator />
+            </span>{" "}
+            <span className="flex items-center gap-1">
+              Entrepreneur <Separator />
+            </span>{" "}
+            <span className="flex items-center gap-1 leading-[32px]">Sport Climber</span>
+          </Text>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-          <Button asChild variant="primary" size="lg">
-            <a href="/projects">View Projects</a>
-          </Button>
-          <Button asChild variant="outline" size="lg">
-            <a href="/about">About Me</a>
-          </Button>
-        </div>
+          {/* CTA Buttons */}
+          <div className="flex flex-row gap-4 justify-start xl:justify-center">
+            <Badge variant="outline" size="sm">
+              <span className="inline-flex text-secondary-500 items-center h-full gap-1 uppercase">
+                <span className="relative size-3 inline-flex items-center justify-center ">
+                  <span className="absolute inline-flex size-full bg-secondary dark:opacity-75 opacity-25 rounded-full animate-ping" />
+                  <span className="relative bg-secondary rounded-full size-1.5 outline-offset-1 outline-1 outline-(--secondary)" />
+                </span>
+                Available for hiring
+              </span>
+            </Badge>
+            <Button asChild variant="ghost" size="sm" className="uppercase">
+              <a href="/about#connect">Connect</a>
+            </Button>
+          </div>
 
-        {/* Social Links */}
-        <div className="flex items-center space-x-6 pt-8 text-muted-foreground">
-          <a
-            href="https://github.com/dpaez"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary transition-colors"
-            aria-label="GitHub"
-          >
-            <GithubIcon className="h-6 w-6" />
-          </a>
-          <a
-            href="https://twitter.com/carax"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary transition-colors"
-            aria-label="Twitter"
-          >
-            <TwitterIcon className="h-6 w-6" />
-          </a>
-          <a
-            href="https://geutstudio.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-primary transition-colors"
-            aria-label="GEUT Studio"
-          >
-            <ExternalLinkIcon className="h-6 w-6" />
-          </a>
+          {/* Social Links */}
+          <div className="flex h-8 items-center justify-start xl:justify-end space-x-6 text-muted-foreground">
+            <a
+              href="https://github.com/dpaez"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+              aria-label="GitHub"
+            >
+              <GithubIcon className="size-5" />
+            </a>
+            <a
+              href="https://twitter.com/carax"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+              aria-label="Twitter"
+            >
+              <XTwitterIcon className="size-5 stroke-4" />
+            </a>
+            <a
+              href="https://geutstudio.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-primary transition-colors"
+              aria-label="GEUT Studio"
+            >
+              <GeutIcon className="size-5" />
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -75,46 +105,6 @@ function GithubIcon({ className }: { className?: string }) {
     >
       <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
       <path d="M9 18c-4.51 2-5-2-7-2" />
-    </svg>
-  )
-}
-
-function TwitterIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
-    </svg>
-  )
-}
-
-function ExternalLinkIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M15 3h6v6" />
-      <path d="M10 14 21 3" />
-      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
     </svg>
   )
 }

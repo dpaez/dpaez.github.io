@@ -1,33 +1,33 @@
 ---
+import { getCollection } from 'astro:content'
 import Layout from "@/layouts/Layout.astro"
 import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
-import { Card } from "local-components/card"
+import { BlogList } from "@/components/BlogList"
 
-const currentPath = Astro.url.pathname
+const posts = await getCollection('blog', ({ data }: { data: { draft: boolean } }) => !data.draft)
 ---
 
 <Layout 
-  title="Blog | DΞKΔ"
-  description="Technical blog by Diego Paez (DEKA). Thoughts on P2P, distributed systems, and software development."
+  title="Blog | D Ξ K Δ"
+  description="Technical blog by Diego Paez (DEKA). Thoughts on P2P systems, distributed computing, and software development."
+  
 >
-  <ThemeNavShell client:load currentPath={currentPath} />
-  <main transition:animate="slide" class="container py-12">
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+  <main transition:animate="fade" class=" py-12">
     <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl font-bold tracking-tight mb-4 text-center">Blog</h1>
-      <p class="text-lg text-muted-foreground text-center mb-12">
-        Thoughts on P2P systems, distributed computing, and software development.
-      </p>
-      
-      <Card>
-        <p class="text-muted-foreground text-center">
-          Blog posts coming soon. Check back for technical insights and updates.
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold tracking-tight mb-4">Blog</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Thoughts on P2P systems, distributed computing, and software development. 
+          Lessons learned from building real systems.
         </p>
-      </Card>
+      </div>
+      
+      <BlogList client:load posts={posts} />
     </div>
   </main>
-  <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
-    <div class="container">
-      <p>© {new Date().getFullYear()} DΞKΔ. Built with Astro & React.</p>
-    </div>
-  </footer>
 </Layout>

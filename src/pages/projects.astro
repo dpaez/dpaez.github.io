@@ -2,16 +2,20 @@
 import Layout from "@/layouts/Layout.astro"
 import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
 import { ProjectsGrid } from "@/components/ProjectsGrid"
+import Footer from "@/components/Footer"
 
-const currentPath = Astro.url.pathname
 ---
 
 <Layout 
-  title="Projects | DΞKΔ"
+  title="Projects | D Ξ K Δ"
   description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, Despegar, and more."
 >
-  <ThemeNavShell client:load currentPath={currentPath} />
-  <main transition:animate="slide" class="container py-12">
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+  <main transition:animate="fade" class="py-12">
     <div class="max-w-6xl mx-auto">
       <div class="text-center mb-12">
         <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
@@ -24,9 +28,5 @@ const currentPath = Astro.url.pathname
       <ProjectsGrid client:load />
     </div>
   </main>
-  <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
-    <div class="container">
-      <p>© {new Date().getFullYear()} DΞKΔ. Built with Astro & React.</p>
-    </div>
-  </footer>
+
 </Layout>

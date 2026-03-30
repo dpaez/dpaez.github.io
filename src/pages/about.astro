@@ -4,25 +4,31 @@ import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
 import { AboutContent } from "@/components/AboutContent"
 import { TalksSection } from "@/components/TalksSection"
 
-const currentPath = Astro.url.pathname
+
 ---
 
 <Layout 
-  title="About | DΞKΔ"
+  title="About | D Ξ K Δ"
   description="About Diego Paez (DEKA). Background, experience, conference talks, and areas of interest."
+  
 >
-  <ThemeNavShell client:load currentPath={currentPath} />
-  <main transition:animate="slide" class="container py-12">
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+  <main transition:animate="fade" class=" py-12">
     <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold tracking-tight mb-4">About</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          Background, experience, conference talks, and areas of interest.
+        </p>
+      </div>
       <div class="space-y-12">
         <AboutContent client:load />
         <TalksSection client:load />
       </div>
     </div>
   </main>
-  <footer class="border-t border-border py-6 text-center text-sm text-muted-foreground mt-auto">
-    <div class="container">
-      <p>© {new Date().getFullYear()} DΞKΔ. Built with Astro & React.</p>
-    </div>
-  </footer>
 </Layout>

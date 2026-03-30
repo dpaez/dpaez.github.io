@@ -1,15 +1,10 @@
 import { ThemeProvider } from "local-components/theme-context"
 import { Navigation } from "./Navigation"
 
-type ThemeNavShellProps = {
-  currentPath?: string
-}
-
-/** Single island: ThemeProvider + Navigation so useTheme() works in ThemeToggle. */
-export function ThemeNavShell({ currentPath = "/" }: ThemeNavShellProps) {
+export function ThemeNavShell() {
   return (
     <ThemeProvider>
-      <Navigation currentPath={currentPath} />
+      <Navigation />
     </ThemeProvider>
   )
 }

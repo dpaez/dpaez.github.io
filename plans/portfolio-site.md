@@ -270,7 +270,8 @@ Build `ProjectCard` component:
 
 - Extend local-components Card with project-specific features
 - Display: title, description, technology tags, action buttons
-- Tags rendered as small pills/badges
+- Use meta property from Card component
+- Tags rendered as small pills/badges: pass a badge prop to the Card component
 - Links open externally (demoUrl, repoUrl)
 - Hover effect with subtle geometric accent
 

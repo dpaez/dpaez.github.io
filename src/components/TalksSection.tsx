@@ -7,7 +7,7 @@ import type { Talk } from "@/data/talks"
 
 export function TalksSection() {
   return (
-    <Section title="Talks & Workshops" className="prose dark:prose-invert max-w-none space-y-8">
+    <Section id="talks" title="Talks & Workshops" className="space-y-8">
       <p className="text-muted-foreground mb-6">
         I enjoy preparing content for talks and workshops. Sharing experiences and structuring ideas is always a
         rewarding experience.
@@ -30,9 +30,18 @@ function TalkCard({ talk }: { talk: Talk }) {
       badge={<Badge variant="secondary">{talk.type}</Badge>}
       className="overflow-hidden"
       image={{ src: talk.image ?? "", alt: `${talk.title} at ${talk.event}` }}
+      footer={
+        talk.link && (
+          <Button variant="ghost" size="sm" asChild>
+            <a className="no-underline" href={talk.link} target="_blank" rel="noopener noreferrer">
+              View materials →
+            </a>
+          </Button>
+        )
+      }
     >
       <div className="space-y-3">
-        {talk.people && <p className="text-sm text-muted-foreground">with {talk.people.join(", ")}</p>}
+        {talk.people && <p className="text-sm text-muted-foreground capitalize">with {talk.people.join(", ")}</p>}
 
         <div className="flex flex-wrap gap-1">
           {talk.topics.map((topic) => (
@@ -41,14 +50,6 @@ function TalkCard({ talk }: { talk: Talk }) {
             </Badge>
           ))}
         </div>
-
-        {talk.link && (
-          <Button variant="ghost" size="sm" asChild>
-            <a href={talk.link} target="_blank" rel="noopener noreferrer">
-              View materials →
-            </a>
-          </Button>
-        )}
       </div>
     </Card>
   )
