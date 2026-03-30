@@ -74,29 +74,36 @@ export function Navigation() {
       </div>
 
       {/* Mobile Menu */}
-      {isMenuOpen && (
-        <div
-          id="mobile-menu"
-          className="md:hidden absolute top-0 right-0 w-full border-t border-border bg-background px-4 py-4"
-        >
-          <nav className="flex flex-col space-y-4 border-b border-border pb-4">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={closeMenu}
-                className={`text-sm uppercase font-mono font-bold tracking-wide transition-colors  hover:text-secondary-300   ${
-                  currentPath === link.href || (link.href === "/blog" && currentPath.startsWith(link.href))
-                    ? "text-secondary"
-                    : "text-muted-foreground"
-                }`}
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
+      <div
+        className={cn(
+          "md:hidden absolute top-12 right-0 left-0 grid transition-[grid-template-rows,opacity,transform] duration-200 ease-out",
+          isMenuOpen
+            ? "grid-rows-[1fr] opacity-100 translate-y-0"
+            : "grid-rows-[0fr] opacity-0 -translate-y-1 pointer-events-none",
+        )}
+      >
+        <div className="overflow-hidden">
+          <div className="border-t border-border bg-background py-4">
+            <nav className="flex flex-col space-y-4 border-b border-primary-200 pb-4">
+              {navLinks.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={closeMenu}
+                  className={cn(
+                    `text-sm uppercase font-mono font-bold tracking-wide transition-colors hover:text-secondary-300`,
+                    currentPath === link.href || (link.href === "/blog" && currentPath.startsWith(link.href))
+                      ? "text-secondary"
+                      : "text-muted-foreground",
+                  )}
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   )
 }
