@@ -1,7 +1,8 @@
 import { useTheme } from "local-components/theme-context"
 import { Toggle } from "local-components/toggle"
+import { cn } from "local-components/utils"
 
-export function ThemeToggle() {
+export function ThemeToggle({ className }: { className?: string }) {
   const { theme, toggleTheme } = useTheme()
 
   return (
@@ -9,7 +10,7 @@ export function ThemeToggle() {
       variant="switch"
       checked={theme === "dark"}
       onCheckedChange={toggleTheme}
-      className="*:dark:bg-foreground"
+      className={cn("*:dark:bg-foreground", className)}
       aria-label={theme === "light" ? "Switch to dark mode" : "Switch to light mode"}
     />
   )

@@ -23,14 +23,14 @@ export function AboutContent() {
                 BIO
               </Heading>
             }
-            className=" max-w-none"
-            description={<Text color="muted">{aboutData.bio}</Text>}
+            className="max-w-none"
             image={{ src: aboutData.image, alt: "Diego Paez Profile Picture" }}
             style={{ objectPosition: "top" }}
           >
-            <div className="space-y-4">
-              <Text>{aboutData.education}</Text>
-              <Text>{aboutData.currentFocus}</Text>
+            <div className="space-y-4 font-sans font-extralight">
+              <Text color="muted">{aboutData.bio}</Text>
+              <Text color="muted">{aboutData.education}</Text>
+              <Text color="muted">{aboutData.currentFocus}</Text>
             </div>
           </Card>
           <Blockquote>{aboutData.quote}</Blockquote>
@@ -71,13 +71,19 @@ export function AboutContent() {
                   </Heading>
                 </div>
                 <Text className="text-muted-foreground mb-2">{exp.description}</Text>
+
                 {exp.highlights && (
                   <ul
                     role="list"
-                    className="list-(--list-bullet) marker:text-primary-300 font-mono font-thin text-primary-400 list-inside text-sm space-y-1"
+                    className="no-disc border-l-2 border-primary-400 dark:border-foreground list-none font-mono font-thin list-inside text-xs md:text-sm"
                   >
                     {exp.highlights.map((highlight, idx) => (
-                      <li key={idx}>{highlight}</li>
+                      <li
+                        key={idx}
+                        className="even:bg-accent/60 odd:bg-primary-200/30 p-2 first:rounded-t-xs last:rounded-b-xs"
+                      >
+                        {highlight}
+                      </li>
                     ))}
                   </ul>
                 )}
@@ -88,10 +94,7 @@ export function AboutContent() {
       </Section>
       {/* Areas of Interest */}
       <Section title="Areas of Interest" className="space-y-8">
-        <Card
-          description="Areas of focus drawn from past roles and ongoing interest: full‑stack engineering, tailored JavaScript
-            solutions, distributed systems, P2P‑powered products and agents development cycles and harness engineering."
-        >
+        <Card description="Focus areas built through hands-on work: full-stack engineering, custom JavaScript solutions, distributed systems, P2P products, and agent-driven development with strong tooling.">
           <div className="flex flex-wrap gap-2">
             {areasOfInterestData.map((area) => (
               <Badge key={area.id} variant="outline">

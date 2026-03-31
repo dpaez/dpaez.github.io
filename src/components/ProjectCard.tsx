@@ -39,10 +39,8 @@ const Footer = ({ project }: ProjectCardProps) => {
 }
 
 export function ProjectCard({ project }: ProjectCardProps) {
-  const projectYearSplit = project.year?.split("-")
-  const projectYearStart = projectYearSplit?.[0] || "Project"
-  const projectYearEnd = projectYearSplit?.[1] || projectYearStart
-  const meta = { label: projectYearStart, value: projectYearEnd }
+  const endYear = project.endYear === project.startYear ? "◉" : project.endYear
+  const meta = { label: project.startYear, value: endYear }
 
   return (
     <Card

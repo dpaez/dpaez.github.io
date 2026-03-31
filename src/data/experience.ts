@@ -20,7 +20,7 @@ export const experienceData: Experience[] = [
       "Co-founded GEUT in 2018 as a boutique software consultancy and P2P lab",
       "Launched Sher in 2020: a fan-to-fan live-audio platform with P2P delivery",
       "Went through two accelerators: Emprelatam & Latitud",
-      "Returned to consultancy in 2022, working with Alliants in staff-augmentation model through end of 2024",
+      "Returned to consultancy in 2022, working with Alliants in staff-augmentation model through end of 2025",
       "Now exploring AI landscape and open to new collaborations",
     ],
   },
@@ -35,7 +35,7 @@ export const experienceData: Experience[] = [
     highlights: [
       "Staff-augmentation",
       "Worked across the whole stack from developer tooling to full-stack development and performance optimizations",
-      "Shipped meaningful performance improvements",
+      "Worked on various performance optimizations. From font loading to ssr clustering",
     ],
   },
   {
@@ -74,6 +74,10 @@ export const experienceData: Experience[] = [
     type: "academic",
     period: "2013-2015",
     description: "Worked at LIFIA research lab.",
+    highlights: [
+      "Researcher and developer",
+      "Worked on a web platform tool for designing interactions (sketching and prototyping)",
+    ],
   },
   {
     id: "unlp",

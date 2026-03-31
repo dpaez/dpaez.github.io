@@ -7,12 +7,7 @@ import type { Talk } from "@/data/talks"
 
 export function TalksSection() {
   return (
-    <Section id="talks" title="Talks & Workshops" className="space-y-8">
-      <p className="text-muted-foreground mb-6">
-        I enjoy preparing content for talks and workshops. Sharing experiences and structuring ideas is always a
-        rewarding experience.
-      </p>
-
+    <Section id="talks" title="Presentations" className="space-y-8">
       <div className="grid gap-6 md:grid-cols-2">
         {talksData.map((talk) => (
           <TalkCard key={talk.id} talk={talk} />
@@ -26,6 +21,7 @@ function TalkCard({ talk }: { talk: Talk }) {
   return (
     <Card
       title={talk.title}
+      description={talk.description}
       meta={{ label: talk.event, value: talk.year.toString() }}
       badge={<Badge variant="secondary">{talk.type}</Badge>}
       className="overflow-hidden"

@@ -11,8 +11,9 @@ interface NavLink {
 
 const navLinks: NavLink[] = [
   { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
+  { href: "/projects", label: "Projects" },
+  { href: "/talks", label: "Talks" },
   { href: "/blog", label: "Blog" },
 ]
 
@@ -37,7 +38,7 @@ export function Navigation() {
   return (
     <header className="relative flex items-center justify-end h-12 z-40 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60">
       {/* Desktop Navigation */}
-      <nav className="hidden md:flex items-end justify-end space-x-2 pr-8">
+      <nav className="hidden md:flex items-center justify-end space-x-2 pr-8">
         {navLinks.map((link) => (
           <NavLink
             key={link.href}
@@ -47,7 +48,7 @@ export function Navigation() {
           />
         ))}
         <div className="ml-4 border-l border-border pl-4">
-          <ThemeToggle />
+          <ThemeToggle className="mt-1" />
         </div>
       </nav>
 
@@ -84,7 +85,7 @@ export function Navigation() {
       >
         <div className="overflow-hidden">
           <div className="border-t border-border bg-background py-4">
-            <nav className="flex flex-col space-y-4 border-b border-primary-200 pb-4">
+            <nav className="flex flex-col space-y-4 border-b border-secondary-200 pb-4 px-4">
               {navLinks.map((link) => (
                 <a
                   key={link.href}

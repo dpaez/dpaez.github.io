@@ -9,7 +9,8 @@ export interface Project {
   link?: string
   image?: string
   featured: boolean
-  year?: string
+  startYear: string
+  endYear?: string
   role?: string
 }
 
@@ -19,35 +20,26 @@ export const projectsData: Project[] = [
     title: "Sher",
     description: "Fan-to-fan live-audio platform with P2P delivery",
     longDescription:
-      'A fan-to-fan live-audio platform that paired P2P delivery with streaming. Creators got a lightweight "remote studio" right in the browser—no downloads, just start streaming in a few clicks. Listeners helped spread the show with no streaming servers in the middle.',
-    tags: ["P2P", "WebRTC", "Live Audio", "Streaming", "JavaScript", "Node.js"],
-    link: "https://sher.geutstudio.com",
+      'A fan-to-fan live-audio platform that paired P2P delivery with streaming. Creators got a lightweight "remote studio" right in the browser—no downloads, just start streaming in a few clicks. Listeners helped spread the show with no streaming servers in the middle. Self-funded project.',
+    tags: ["P2P", "WebRTC", "Hypercore", "Live Audio", "Streaming", "JavaScript"],
+    link: "https://sher.fm",
     featured: true,
-    year: "2020-2022",
-    role: "Co-founder & Technical Lead",
-  },
-  {
-    id: "geut",
-    title: "GEUT Studio",
-    description: "Boutique software consultancy and P2P lab",
-    longDescription:
-      "A boutique software consultancy and a lab for P2P experiments. Founded in 2018, we help teams build distributed systems and explore the P2P landscape.",
-    tags: ["P2P", "Distributed Systems", "Consultancy", "JavaScript", "Node.js"],
-    link: "https://geutstudio.com",
-    featured: true,
-    year: "2018-Present",
+    startYear: "2020",
+    endYear: "2022",
     role: "Co-founder",
   },
   {
-    id: "despegar-components",
-    title: "Despegar Components",
-    description: "Components-as-a-service architecture",
+    id: "geut",
+    title: "Geut Studio",
+    description: "Boutique software consultancy",
     longDescription:
-      "Built a components-as-a-service system at Despegar that was rendered and consumed by different teams across the company. Enabled consistent UI patterns and faster development across multiple product teams.",
-    tags: ["React", "Components", "Architecture", "Fullstack", "JavaScript"],
+      "A boutique software consultancy and a lab for P2P experiments. Founded in 2018, we help teams build distributed systems and explore the P2P landscape.",
+    tags: ["Consultancy", "P2P", "Distributed Systems", "JavaScript", "Node.js"],
+    link: "https://geutstudio.com",
     featured: true,
-    year: "2015-2018",
-    role: "Fullstack Engineer",
+    startYear: "2018",
+    endYear: "Present",
+    role: "Co-founder",
   },
   {
     id: "dat-workshop",
@@ -55,10 +47,11 @@ export const projectsData: Project[] = [
     description: "Workshop materials for P2P data sharing with Dat protocol",
     longDescription:
       "Workshop materials and examples for building applications with the Dat protocol. Covers P2P data sharing, decentralized architectures, and building chat applications.",
-    tags: ["Dat", "P2P", "Workshop", "JavaScript", "Node.js"],
+    tags: ["P2P", "Dat", "Workshop", "JavaScript", "Node.js"],
     repoUrl: "https://github.com/geut/dat-workshop",
     featured: false,
-    year: "2018",
+    startYear: "2018",
+    endYear: "2018",
     role: "Workshop Creator",
   },
   {
@@ -66,23 +59,26 @@ export const projectsData: Project[] = [
     title: "Building Up on Dat",
     description: "Talk materials about the Dat ecosystem and decentralization",
     longDescription:
-      "Talk materials and examples from NodeConf Colombia 2019. Exploring the Dat ecosystem, decentralization patterns, and P2P application development.",
-    tags: ["Dat", "P2P", "Decentralization", "Talk", "JavaScript"],
+      "Talk materials and examples from NodeConf Colombia 2019. Exploring the Dat ecosystem, getting familiar with The Dat protocol and learn how to make a P2P webapp and a Node.js app.",
+    tags: ["P2P", "Dat", "Demos", "Talk", "JavaScript"],
     repoUrl: "https://github.com/geut/building-up-on-dat",
     featured: false,
-    year: "2019",
+    startYear: "2019",
+    endYear: "2019",
     role: "Speaker",
   },
   {
-    id: "harness-engineering",
-    title: "Harness Engineering",
-    description: "Exploring AI landscape and new collaborations",
+    id: "local-components",
+    title: "Local Components Library",
+    description: "UI components library for portfolio pages and projects. Made by agents.",
     longDescription:
-      "Currently focusing on exploring the AI landscape and open to new collaborations—whether augmenting teams or taking on full features or greenfield projects end to end.",
-    tags: ["AI", "Consultancy", "Fullstack", "JavaScript", "TypeScript"],
-    featured: false,
-    year: "2026",
-    role: "Consultant",
+      "UI components library for portfolio pages and projects. Made by agents following Product Requirements Documents(PRD), Technical Design Documents (TDDs) and Tasks Lists.",
+    tags: ["Agents Workflow", "TypeScript", "React", "Components", "UI"],
+    repoUrl: "https://github.com/geut/local-components",
+    featured: true,
+    startYear: "2026",
+    endYear: "Present",
+    role: "Personal Project",
   },
 ]
 

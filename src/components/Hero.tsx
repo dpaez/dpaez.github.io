@@ -14,7 +14,7 @@ const Separator = () => {
 export function Hero() {
   return (
     <div className="flex flex-1 min-h-0 flex-col px-8 justify-between">
-      <a href="/" className="flex items-center tracking-tight transition-colors" aria-label="DΞKΔ Home">
+      <a href="/" className="scroll-mt-12 flex items-center tracking-tight transition-colors" aria-label="DΞKΔ Home">
         <Logo className="text-6xl md:text-9xl" />
       </a>
 

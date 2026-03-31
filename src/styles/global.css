@@ -10,7 +10,7 @@
 
 
 @theme inline {
-  --list-bullet: "❐ ";
+  --list-bullet: "⁃ ";
   --font-sans: var(--font-victor-mono);
   --font-mono: var(--font-ibm-plex-mono);
   --thickness: 4px;
@@ -22,7 +22,6 @@
 
 html {
   scrollbar-gutter: stable;
-  interpolate-size: allow-keywords;
 }
 
 .backdrop {

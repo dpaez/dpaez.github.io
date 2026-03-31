@@ -1,13 +1,14 @@
 import { Button } from "local-components/button"
 
 import Logo from "./ui/Logo"
-import { Text } from "local-components/typography/text"
 
 export default function Footer() {
   return (
-    <footer className="mt-auto px-8 py-4  border-t border-border w-full">
+    <footer className="mt-auto px-8 py-4 border-t border-border w-full">
       <div className=" flex flex-col items-center">
-        <Logo className="text-2xl" />
+        <a href="/">
+          <Logo className="text-2xl" />
+        </a>
 
         <Button variant="ghost" asChild className="text-xs" size="sm">
           <span className="flex items-center gap-2 text-muted-foreground">

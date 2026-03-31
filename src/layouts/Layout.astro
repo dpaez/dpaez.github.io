@@ -26,7 +26,6 @@ if (Astro.url.pathname === "/") {
   className = "overflow-hidden"
 }
 ---
-
 <!doctype html>
 <html lang="en" transition:animate="none">
   <head>
@@ -38,14 +37,13 @@ if (Astro.url.pathname === "/") {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
     <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" type="image/png" href="/assets/favicon-16x16.png" sizes="16x16" />
+
     <link rel="manifest" href="/assets/manifest.json" />
     
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content="Diego Paez" />
-    <meta name="generator" content={Astro.generator} />
     
     <!-- Open Graph -->
     <meta property="og:url" content={canonicalUrl} />
