@@ -1,8 +1,8 @@
 import { Button } from "local-components/button"
 import Logo from "./ui/Logo"
 
-import XTwitterIcon from "./ui/icons/x"
-import GeutIcon from "./ui/icons/geut"
+import XTwitterIcon from "@/components/ui/icons/X"
+import GeutIcon from "@/components/ui/icons/Geut"
 
 import { Text } from "local-components/typography/text"
 import { Badge } from "local-components/badge"

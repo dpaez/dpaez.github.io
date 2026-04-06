@@ -51,7 +51,14 @@ export function BlogPost({ post, children }: BlogPostProps) {
         </div>
       </header>
       {post.data.heroImage && (
-        <img src={post.data.heroImage} alt={post.data.title} className="w-full object-cover aspect-video rounded-xs" />
+        <>
+          <img
+            src={post.data.heroImage}
+            alt={post.data.title}
+            className="w-full object-cover aspect-video rounded-xs"
+          />
+          <Text color="muted" size="sm" dangerouslySetInnerHTML={{ __html: post.data.heroImageAlt }} />
+        </>
       )}
       {!post.data.heroImage && (
         <div className="w-64 h-1 bg-muted rounded-full corner-tl-bevel my-8 corner-br-bevel corner-tr-square corner-bl-square mx-auto" />
