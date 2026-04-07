@@ -1,0 +1,77 @@
+---
+import "../styles/global.css"
+import { Font } from "astro:assets";
+
+import { Layout as AppLayout } from "local-components/layout"
+
+import { ClientRouter } from "astro:transitions"
+
+import Footer from "@/components/Footer"
+
+interface Props {
+  title?: string
+  description?: string
+  ogImage?: string
+}
+
+const { 
+  title = "DΞKΔ | Diego Paez",
+  description = "Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA).",
+  ogImage = "/assets/deka.png"
+} = Astro.props
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || "https://dpaez.github.io").toString()
+let className = ""
+if (Astro.url.pathname === "/") {
+  className = "overflow-hidden"
+}
+---
+<!doctype html>
+<html lang="en" transition:animate="none">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <Font cssVariable="--font-victor-mono" />
+    <Font cssVariable="--font-ibm-plex-mono" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" href="/assets/favicon-32x32.png" sizes="32x32" />
+
+    <link rel="manifest" href="/assets/manifest.json" />
+    
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Diego Paez" />
+    
+    <!-- Open Graph -->
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="@carax" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    
+    <!-- View Transitions -->
+    <ClientRouter />
+  </head>
+  <body class=`bg-background text-foreground antialiased ${className}`>
+    <AppLayout padding="none" maxWidth="full">
+      <slot />
+    </AppLayout>
+    {Astro.url.pathname !== "/" && <Footer />}
+  </body>
+  <script>
+    document.addEventListener("astro:before-swap", (event) => {
+      event.newDocument.documentElement.classList.add(localStorage.getItem("local-components-theme") === 'dark'? "dark" : "") 
+    });
+    
+  </script>
+</html>

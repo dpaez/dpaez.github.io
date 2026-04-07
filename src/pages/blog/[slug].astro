@@ -1,0 +1,41 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import type { GetStaticPaths } from 'astro'
+import Layout from "@/layouts/Layout.astro"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { BlogPost } from "@/components/BlogPost"
+
+
+import MDXComponents from "@/mdx-components"
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection('blog')
+  return posts.map((post: CollectionEntry<'blog'>) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }))
+}) satisfies GetStaticPaths
+
+const { post } = Astro.props as { post: CollectionEntry<'blog'> }
+const { Content } = await post.render()
+---
+
+<Layout 
+  title={`${post.data.title} | D Ξ K Δ Writing`}
+  description={post.data.description}
+>
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+
+  <main transition:animate="fade" class=" py-12">
+    <div class="container max-w-3xl mx-auto">
+      <BlogPost client:load post={post}>
+          <Content components={{...MDXComponents}}/>
+      </BlogPost>
+    </div>
+  </main>
+  
+</Layout>
