@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { ProjectsGrid } from "@/components/ProjectsGrid"
+import Footer from "@/components/Footer"
+
+---
+
+<Layout 
+  title="Projects | D Ξ K Δ"
+  description="Projects and work by Diego Paez (DEKA). Featuring SHER, GEUT, Despegar, and more."
+>
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+  <main transition:animate="fade" class="py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold tracking-tight mb-4">Projects</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          A selection of my work in P2P systems, distributed applications, 
+          and fullstack development. From live audio streaming to component architectures.
+        </p>
+      </div>
+      
+      <ProjectsGrid client:load />
+    </div>
+  </main>
+
+</Layout>

@@ -1,0 +1,31 @@
+---
+import Layout from "@/layouts/Layout.astro"
+import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
+import { TalksSection } from "@/components/TalksSection"
+
+---
+
+<Layout 
+  title="Talks & Workshops | D Ξ K Δ"
+  description="Talks and workshops by Diego Paez (DEKA) et al."
+>
+  <div class="sticky top-0 z-40 h-12">
+    <div class="backdrop"></div>
+    <div class="backdrop-edge"></div>
+    <ThemeNavShell transition:persist="nav" client:only="react" />
+  </div>
+  <main transition:animate="fade" class="py-12">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-bold tracking-tight mb-4">Talks & Workshops</h1>
+        <p class="text-lg text-muted-foreground max-w-2xl mx-auto">
+          I enjoy preparing content for talks and workshops. Sharing experiences and structuring ideas is always a
+          rewarding experience.
+        </p>
+      </div>
+      
+        <TalksSection client:load />
+    </div>
+  </main>
+
+</Layout>

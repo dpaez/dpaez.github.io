@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro"
+
+import { Hero } from "../components/Hero"
+import { ThemeNavShell } from "../components/ui/ThemeNavShell"
+
+
+---
+
+<Layout 
+  title="D Ξ K Δ | Diego Paez"
+  description="Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA)."
+>
+  <div class="flex min-h-svh flex-col">
+    <div  class="home sticky top-0 z-40 h-12">
+      <div class="backdrop"></div>
+      <ThemeNavShell transition:persist="nav" client:only="react" />
+    </div>
+    <main transition:animate="fade" class="flex flex-1 flex-col min-h-0">
+      <Hero />
+    </main>
+</div>
+</Layout>
