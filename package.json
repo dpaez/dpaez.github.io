@@ -7,6 +7,8 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "deploy": "wrangler deploy",
+    "wrangler:dev": "wrangler dev",
     "lint": "oxlint .",
     "lint:fix": "oxlint . --fix",
     "format": "oxfmt --write .",
@@ -16,14 +18,15 @@
     "check": "bun run typecheck && bun run lint && bun run format:check"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^13.1.7",
     "@astrojs/mdx": "^5.0.3",
-    "@astrojs/react": "^5.0.2",
+    "@astrojs/react": "5.0.3",
     "@fontsource-variable/inter": "^5.2.8",
     "@radix-ui/react-slot": "^1.2.4",
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.18.1",
+    "astro": "6.1.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "local-components": "^0.1.0-alpha.16",
@@ -31,7 +34,8 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "tailwind-merge": "^3.5.0",
-    "tailwindcss": "^4.2.2"
+    "tailwindcss": "^4.2.2",
+    "wrangler": "^4.80.0"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",

@@ -20,6 +20,13 @@ const makeText = (props: React.ComponentPropsWithoutRef<typeof Text>) => (
   <Text {...props} className="not-prose text-pretty py-2" />
 )
 
+const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => (
+  <li
+    {...props}
+    className="marker:text-primary-600 dark:marker:text-secondary-600 text-pretty py-2 text-primary-500 dark:text-secondary-200"
+  />
+)
+
 export default {
   h1: makeHeading("h1"),
   h2: makeHeading("h2"),
@@ -30,4 +37,5 @@ export default {
   p: makeText,
   blockquote: Blockquote,
   Lead,
+  li: ListItem,
 }

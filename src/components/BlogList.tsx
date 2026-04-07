@@ -17,7 +17,7 @@ export function BlogList({ posts }: BlogListProps) {
         <div className="grid gap-6 md:grid-cols-2">
           {sortedPosts.map((post) => {
             return (
-              <a key={post.id} href={`/blog/${post.slug}`} className="block no-underline">
+              <a key={post.id} href={`/blog/${post.id}`} className="block no-underline">
                 <Card
                   variant="hoverable"
                   title={post.data.title}

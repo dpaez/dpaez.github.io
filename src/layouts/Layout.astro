@@ -63,7 +63,7 @@ if (Astro.url.pathname === "/") {
     <ClientRouter />
   </head>
   <body class=`bg-background text-foreground antialiased ${className}`>
-    <AppLayout padding="none" maxWidth="full">
+    <AppLayout padding="none" maxWidth="full" client:only="react">
       <slot />
     </AppLayout>
     {Astro.url.pathname !== "/" && <Footer />}
@@ -72,6 +72,5 @@ if (Astro.url.pathname === "/") {
     document.addEventListener("astro:before-swap", (event) => {
       event.newDocument.documentElement.classList.add(localStorage.getItem("local-components-theme") === 'dark'? "dark" : "") 
     });
-    
   </script>
 </html>

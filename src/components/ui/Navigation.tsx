@@ -20,7 +20,7 @@ const navLinks: NavLink[] = [
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  const [currentPath, setCurrentPath] = useState(window.location.pathname)
+  const [currentPath, setCurrentPath] = useState("")
   useEffect(() => {
     document.addEventListener("astro:after-swap", () => {
       setCurrentPath(window.location.pathname)

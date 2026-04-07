@@ -35,7 +35,10 @@ export function BlogPost({ post, children }: BlogPostProps) {
         </div>
 
         <div className="flex items-center gap-4 mt-4 text-sm text-muted-foreground">
-          <time className="not-prose font-semibold text-xs tracking-tight" dateTime={post.data.pubDate.toISOString()}>
+          <time
+            className="not-prose font-thin text-xs tracking-tight font-mono"
+            dateTime={post.data.pubDate.toISOString()}
+          >
             Published: {formattedDate}
           </time>
           {post.data.updatedDate && (
@@ -57,7 +60,11 @@ export function BlogPost({ post, children }: BlogPostProps) {
             alt={post.data.title}
             className="w-full object-cover aspect-video rounded-xs"
           />
-          <Text color="muted" size="sm" dangerouslySetInnerHTML={{ __html: post.data.heroImageAlt }} />
+          <Text
+            color="muted"
+            size="sm"
+            dangerouslySetInnerHTML={{ __html: post.data.heroImageAlt ?? ("" as string) }}
+          />
         </>
       )}
       {!post.data.heroImage && (

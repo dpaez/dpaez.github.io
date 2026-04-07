@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content'
+import { getCollection, type CollectionEntry, render } from 'astro:content'
 import type { GetStaticPaths } from 'astro'
 import Layout from "@/layouts/Layout.astro"
 import { ThemeNavShell } from "@/components/ui/ThemeNavShell"
@@ -11,13 +11,14 @@ import MDXComponents from "@/mdx-components"
 export const getStaticPaths = (async () => {
   const posts = await getCollection('blog')
   return posts.map((post: CollectionEntry<'blog'>) => ({
-    params: { slug: post.slug },
+    params: { slug: post.id },
     props: { post },
   }))
 }) satisfies GetStaticPaths
 
 const { post } = Astro.props as { post: CollectionEntry<'blog'> }
-const { Content } = await post.render()
+
+const { Content } = await render(post);
 ---
 
 <Layout 

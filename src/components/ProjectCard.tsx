@@ -40,7 +40,7 @@ const Footer = ({ project }: ProjectCardProps) => {
 
 export function ProjectCard({ project }: ProjectCardProps) {
   const endYear = project.endYear === project.startYear ? "◉" : project.endYear
-  const meta = { label: project.startYear, value: endYear }
+  const meta = { label: project.startYear, value: endYear ?? "◉" }
 
   return (
     <Card
