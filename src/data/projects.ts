@@ -74,7 +74,7 @@ export const projectsData: Project[] = [
     longDescription:
       "UI components library for portfolio pages and projects. Made by agents following Product Requirements Documents(PRD), Technical Design Documents (TDDs) and Tasks Lists.",
     tags: ["Agents Workflow", "TypeScript", "React", "Components", "UI"],
-    repoUrl: "https://github.com/geut/local-components",
+    repoUrl: "https://github.com/dpaez/local-components",
     featured: true,
     startYear: "2026",
     endYear: "Present",
