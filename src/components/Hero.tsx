@@ -18,7 +18,7 @@ export function Hero() {
         <Logo className="text-6xl md:text-9xl" />
       </a>
 
-      <div className="max-w-360 mx-auto px-1 w-full">
+      <div className="mx-auto px-1 w-full">
         <div className="grid grid-cols-1 xl:grid-cols-3 items-center gap-4 pb-8">
           {/* Tagline */}
           <Text
