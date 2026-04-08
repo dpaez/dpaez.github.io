@@ -45,5 +45,6 @@ export default defineConfig({
 
   adapter: cloudflare({
     sessionKVBindingName: "DK_SPOT_SESSIONS",
+    imageService: { build: 'compile', runtime: 'cloudflare-binding' }
   })
 });
