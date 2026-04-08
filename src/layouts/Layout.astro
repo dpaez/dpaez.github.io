@@ -16,11 +16,11 @@ interface Props {
 
 const { 
   title = "D Ξ K Δ | Diego Paez",
-  description = "Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA).",
-  ogImage = "/assets/deka.png"
+  description = "Developer, P2P Enthusiast, Entrepreneur, Sport Climber. Personal portfolio and blog of Diego Paez (DEKA).",
+  ogImage = "/assets/deka-banner.png"
 } = Astro.props
 
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site || "https://dpaez.github.io").toString()
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site || "https://deka.build").toString()
 let className = ""
 if (Astro.url.pathname === "/") {
   className = "overflow-hidden"
