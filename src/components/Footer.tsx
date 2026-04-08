@@ -9,7 +9,6 @@ export default function Footer() {
         <a href="/">
           <Logo className="text-2xl" />
         </a>
-
         <Button variant="ghost" asChild className="text-xs" size="sm">
           <span className="flex items-center gap-2 text-muted-foreground">
             <a href="mailto:diego@geutstudio.com">diego at geutstudio.com</a>

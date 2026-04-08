@@ -23,7 +23,7 @@ const makeText = (props: React.ComponentPropsWithoutRef<typeof Text>) => (
 const ListItem = (props: React.ComponentPropsWithoutRef<"li">) => (
   <li
     {...props}
-    className="marker:text-primary-600 dark:marker:text-secondary-600 text-pretty py-2 text-primary-500 dark:text-secondary-200"
+    className="marker:text-primary-600 dark:marker:text-secondary-600 text-pretty text-primary-500 dark:text-secondary-200"
   />
 )
 

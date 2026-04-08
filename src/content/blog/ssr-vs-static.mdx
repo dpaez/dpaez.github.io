@@ -1,16 +1,15 @@
 ---
 title: "SSR vs Static: A Production Incident Story"
-description: "A story about a SSR app under stress, a legacy app and the criteria to fix it"
+description: "Here's how we reduced latency by 88% by leveraging clustering and hybrid rendering"
 pubDate: 2026-03-31
 tags: ["Performance", "Nuxt", "Nitro", "Staff Augmentation"]
-heroImage: "../../src/assets/owais-khan-unsplash.jpg"
+heroImage: "../../assets/owais-khan-unsplash.jpg"
 heroImageAlt: 'Photo by <a class="dark:text-secondary-200" href="https://unsplash.com/@oakhan_106?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Owais Khan</a> on <a class="dark:text-secondary-200" href="https://unsplash.com/photos/cracks-and-lines-overlay-a-purple-background-wiotf0BkwFU?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>'
 ---
 
 <Lead>
   {`Not so long ago, I was working on a survey builder app that relied heavily on SSR. Then a campaign launched and things didn't go as expected. Errors started appearing, users complained about performance, and I was tasked with figuring out what was happening and how to fix it.`}
 </Lead>
-
 
 <div class="bg-secondary-400 border-l-accent border-l-4 dark:bg-primary-400 text-foreground font-mono rounded-xs px-4 py-2">
 I'm currently looking for my next role. If this post resonates, feel free to <a href="mailto:diego@geutstudio.com" class="underline hover:font-bold underline-offset-4 ">reach out</a>.
@@ -149,7 +148,6 @@ The system was now able to **handle 159% more requests per second**, and average
 
 ### After
 ![Autocannon results after the changes](../../assets/autocannon-after.png)
-
   
 ## Conclusion
 
@@ -172,4 +170,3 @@ In short:
 - Performance work is often about removing unnecessary work
 
 > SSR is not inherently slow. But it becomes expensive under load if you treat every route as dynamic.
-

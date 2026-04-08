@@ -11,8 +11,8 @@
 
 @theme inline {
   --list-bullet: "⁃ ";
-  --font-sans: var(--font-victor-mono);
-  --font-mono: var(--font-ibm-plex-mono);
+  --font-sans: var(--font-jura);
+  --font-mono: var(--font-lilex);
   --thickness: 4px;
 }
 

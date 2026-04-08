@@ -33,8 +33,8 @@ const { Content } = await render(post);
 
   <main transition:animate="fade" class=" py-12">
     <div class="container max-w-3xl mx-auto">
-      <BlogPost client:load post={post}>
-          <Content components={{...MDXComponents}}/>
+      <BlogPost client:load post={post} heroImageSrc={post.data.heroImage?.src ?? undefined}>
+        <Content components={{...MDXComponents}}/>
       </BlogPost>
     </div>
   </main>

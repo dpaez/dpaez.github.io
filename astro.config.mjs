@@ -26,17 +26,19 @@ export default defineConfig({
   fonts: [
     {
       provider: fontProviders.fontsource(),
-      name: 'victor-mono',
-      cssVariable: '--font-victor-mono',
-      subsets: ['latin'],
-      weights: ['200', '400', '600'],
+      name: 'Hauora Sans',
+      cssVariable: '--font-jura',
+      styles: ['normal'],
+      subsets: ['latin', 'greek'],
+      weights: ['200','300', '500', '800'],
+      variationSettings: "'xhgt' 0.7",
     },
     {
       provider: fontProviders.fontsource(),
-      name: 'IBM Plex Mono',
+      name: 'Lilex',
+      cssVariable: '--font-lilex',
       subsets: ['latin'],
-      weights: ['400', '700'],
-      cssVariable: '--font-ibm-plex-mono',
+      weights: ['200', '400', '700'],
     },
   ],
   

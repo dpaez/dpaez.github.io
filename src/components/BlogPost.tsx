@@ -7,9 +7,10 @@ import { Text } from "local-components/typography/text"
 interface BlogPostProps {
   post: CollectionEntry<"blog">
   children: React.ReactNode
+  heroImageSrc?: string
 }
 
-export function BlogPost({ post, children }: BlogPostProps) {
+export function BlogPost({ post, children, heroImageSrc }: BlogPostProps) {
   const formattedDate = new Date(post.data.pubDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -55,11 +56,7 @@ export function BlogPost({ post, children }: BlogPostProps) {
       </header>
       {post.data.heroImage && (
         <>
-          <img
-            src={post.data.heroImage}
-            alt={post.data.title}
-            className="w-full object-cover aspect-video rounded-xs"
-          />
+          <img src={heroImageSrc} alt={post.data.title} className="w-full object-cover aspect-video rounded-xs" />
           <Text
             color="muted"
             size="sm"
@@ -73,6 +70,7 @@ export function BlogPost({ post, children }: BlogPostProps) {
 
       <section className="">{children}</section>
 
+      <p className="text-center text-xs font-mono">⑊ Farewell dear reader ⑊</p>
       <footer className="mt-12 pt-8 not-prose">
         <Button variant="ghost" asChild>
           <a href="/blog">← Back to all posts</a>

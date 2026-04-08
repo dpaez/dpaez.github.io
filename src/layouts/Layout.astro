@@ -15,7 +15,7 @@ interface Props {
 }
 
 const { 
-  title = "DΞKΔ | Diego Paez",
+  title = "D Ξ K Δ | Diego Paez",
   description = "Developer, P2P Enthusiast, Entrepreneur. Personal portfolio and blog of Diego Paez (DEKA).",
   ogImage = "/assets/deka.png"
 } = Astro.props
@@ -31,8 +31,8 @@ if (Astro.url.pathname === "/") {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <Font cssVariable="--font-victor-mono" />
-    <Font cssVariable="--font-ibm-plex-mono" />
+    <Font cssVariable="--font-jura" preload />
+    <Font cssVariable="--font-lilex" />
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
@@ -43,7 +43,7 @@ if (Astro.url.pathname === "/") {
     <!-- SEO Meta Tags -->
     <title>{title}</title>
     <meta name="description" content={description} />
-    <meta name="author" content="Diego Paez" />
+    <meta name="author" content="D Ξ K Δ" />
     
     <!-- Open Graph -->
     <meta property="og:url" content={canonicalUrl} />
@@ -69,8 +69,18 @@ if (Astro.url.pathname === "/") {
     {Astro.url.pathname !== "/" && <Footer />}
   </body>
   <script>
-    document.addEventListener("astro:before-swap", (event) => {
-      event.newDocument.documentElement.classList.add(localStorage.getItem("local-components-theme") === 'dark'? "dark" : "") 
-    });
+      document.addEventListener("astro:before-swap", (event) => {
+        event.newDocument.documentElement.classList.add(localStorage.getItem("local-components-theme") === 'dark'? "dark" : "") 
+      });
+      document.addEventListener("astro:page-load", (event) => {
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            const hash = window.location.hash
+            if (hash) {
+              document.getElementById(hash.slice(1))?.scrollIntoView({ behavior: "smooth", block: "start" })
+            }
+          })
+        })
+      });
   </script>
 </html>
