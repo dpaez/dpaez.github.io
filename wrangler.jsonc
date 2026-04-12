@@ -1,5 +1,5 @@
 {
-	"name": "dk_spot",
+	"name": "dk-spot",
   "compatibility_date": "2026-04-08",
   "compatibility_flags": [
     "nodejs_compat",
