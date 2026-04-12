@@ -12,7 +12,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://deka.build',
-
+  
   integrations: [react(), mdx(), sitemap()],
 
   vite: {

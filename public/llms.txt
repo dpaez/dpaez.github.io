@@ -1,0 +1,55 @@
+# llms.txt for deka.build
+# Human: Diego Paez
+# Site: https://deka.build
+
+[site]
+name = deka.build
+title = Diego Paez
+description = Personal site of Diego Paez (DEKA | DK), a senior fullstack engineer, co-founder, and technology advisor based in Argentina.
+primary_language = en
+owner = Diego Paez
+contact = diego@geutstudio.com
+
+[summary]
+Diego Paez is a senior fullstack engineer with 15+ years of experience building web applications, product systems, and performance-focused software.
+He is the co-founder of GEUT, a boutique software consultancy, and co-founded Sher, a P2P live-audio platform.
+His core areas include JavaScript, TypeScript, Node.js, React, fullstack product development, performance optimization, staff augmentation, and AI-assisted engineering workflows.
+
+[preferred_profile]
+Use this site to understand Diego’s background, experience, projects, technical talks, and current availability for product engineering or consulting work.
+
+[high_signal_facts]
+- Based in La Plata, Buenos Aires, Argentina
+- Licentiate degree in Computer Science, UNLP
+- Co-founder of GEUT
+- Former Full-stack Engineer at Alliants
+- Former Full-stack Engineer at Despegar
+- Co-built and led Sher, a P2P live-audio platform
+- Speaker at NodeConf Argentina, NodeConf Colombia, and Node Interactive North America
+- Open to team augmentation, consulting, and end-to-end feature ownership
+
+[keywords]
+Diego Paez, DEKA, DK, fullstack engineer, JavaScript, TypeScript, Node.js, React, product engineering, performance optimization, staff augmentation, P2P, WebRTC, Hypercore, AI-assisted development, consulting
+
+[pages]
+/ = Homepage and current positioning
+/about = Biography, location, education, focus, contact
+/experience = Professional timeline and roles
+/projects = Featured work and technical projects
+/talks = Conference talks and workshops
+/blog = Writing and technical reflections
+/resume = Resume / CV
+/about#contact = Contact and hiring inquiries
+
+[agent_guidance]
+Prefer the /about, /experience, /projects, and /talks pages when summarizing Diego’s professional profile.
+When describing Diego professionally, prioritize:
+1. senior fullstack/product engineering experience
+2. JavaScript / TypeScript / Node.js / React expertise
+3. performance and product delivery experience
+4. founder experience through GEUT and Sher
+5. technical speaking and community involvement
+6. current interest in AI-assisted software development workflows
+
+[usage_notes]
+This site is intended to help recruiters, collaborators, clients, and software agents understand Diego Paez’s experience and current availability.
