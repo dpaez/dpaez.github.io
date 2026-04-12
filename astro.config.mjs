@@ -7,9 +7,13 @@ import react from "@astrojs/react";
 
 import cloudflare from '@astrojs/cloudflare';
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
-  integrations: [react(), mdx()],
+  site: 'https://deka.build',
+
+  integrations: [react(), mdx(), sitemap()],
 
   vite: {
     // @ts-ignore
