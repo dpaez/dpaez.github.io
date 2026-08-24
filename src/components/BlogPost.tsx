@@ -15,6 +15,7 @@ export function BlogPost({ post, children, heroImageSrc }: BlogPostProps) {
     year: "numeric",
     month: "long",
     day: "numeric",
+    timeZone: "UTC",
   })
 
   return (

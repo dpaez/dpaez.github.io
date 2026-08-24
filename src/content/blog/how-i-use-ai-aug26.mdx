@@ -1,0 +1,117 @@
+---
+title: "How I use AI in my daily work / August 2026"
+description: "Cursor + Pi + Matt’s skills + Docker cowork sandbox = my current AI workflow"
+pubDate: 2026-08-24
+tags: ["Workflows", "AI", "LLMs", "Pi", "Skills"]
+heroImage: "../../assets/AICowork.jpg"
+heroImageAlt: 'An illustration of a person and an AI agent collaborating together.'
+---
+
+<Lead>
+  {`Here's how I work with AI as of August 2026: Cursor is my primary IDE; Pi is the agent harness; Matt Pocock's skills turn problems into context, specifications, and tickets; and a shared Docker “cowork” sandbox gives the agent and me one place to build and test. The individual tools matter less than the feedback loops between them. This article captures what works, some of the friction, and what I want to explore next.`}
+</Lead>
+
+## The Principle
+
+I've come to think that using AI well is less about choosing the best model and more about designing the system around it: giving the agent the right context, making its output predictable, and building fast feedback loops.
+
+The same applies at the team level. Each developer may bring different agents, skills, and workflows, so collaboration now means coordinating both people and their tools.
+
+It's easy to become absorbed in that machinery. But the machinery only matters if it helps us build a better product and solve the problem we started with.
+
+## Current Stack
+
+- IDE -> Cursor
+- Harness -> Pi
+- LLMs -> Multi-model
+- Sandbox -> Docker sbx
+- Skills -> Matt Pocock's set of skills
+
+I've been using Cursor for the last two years. I usually inspect code here, use the ASK mode when blocked or when I want to understand some module or even with a quick review. It is convenient. If the solution is clear enough, I switch to Agent mode and let it author the code.
+
+If the problem is a bit more complex, I use the Plan mode to sketch the solution in steps and the implementation goes from there. The plan includes a brief visual explanation.
+
+When I want to work on something bigger or I want to parallelize some work, I move to the harness. I used OpenCode in the past but then Pi caught my attention. With its minimal approach and self-extensibility, I was hooked.
+
+When it comes to LLMs, I like to switch between them and explore cheaper models' capabilities. It's quite surprising. Using a frontier model to plan a task and a cheaper open model to execute is quite effective in terms of cost.
+
+Pi is a _YOLO_ harness. No ask mode. No planning mode. The developer is in charge of providing a safe environment and context for the agent to work in. After some research I decided to use [Docker sbx](https://docs.docker.com/reference/cli/sbx/).
+
+Docker sbx supports different agents but sadly no official Pi support yet. But it is quite easy to create your own custom template. Enter [sbx-shell-pi](https://github.com/geut/sbx-shell-pi).
+
+### The Skills
+
+Pi is mostly about skills and tools. This is a minimal approach. The other interesting idea behind Pi is that the agent should adapt to your workflow.
+
+Following this approach, Matt Pocock's [set of skills](https://github.com/mattpocock/skills) is a must. The collection has grown, but it remains well organized. Matt spent some time thinking about these engineering process building blocks.
+
+The skills themselves are quite simple and direct (at least some of them). The power comes from the combination and again Matt thought about this.
+
+My usual workflow when building a new feature is:
+
+- `grill-with-docs` to understand the problem and create a common-ground context with the agent. This will produce a `CONTEXT.md` with a common vocabulary of the problem to solve and some ADRs. These are the foundations for solving the problem.
+- `to-spec` to translate ADRs into more specific requirements.
+- `to-tickets` to create the list of tasks to work on. If GitHub credentials are provided where the agent is running it can create issues directly. Otherwise tasks are saved locally.
+
+
+From here you can choose: to be in the loop and direct the agent to implement one task at a time and review each task sequentially or delegate multiple tasks to subagents.
+
+## Everything in Action
+
+I've been working on two projects recently: [chan AI revamp](https://github.com/geut/chan/tree/dp/new-ai-module) and a web app for conducting interviews. The projects are quite different: one is a CLI tool and the other is a WebRTC app for conducting interviews with a local-first approach.
+
+The tools used are the same, Cursor and Pi. The workflow starts in the harness with the planning skills and from there the baseline implementation. On both projects I deliberately decided to stay in the loop because I wanted to understand the changes and had an idea of the outcome but the work was exploratory.
+
+Sometimes I manually tested some flows (eg: WebRTC connection quality between two devices). Other times, I reversed the roles and asked the agent to act as a tutor, using the specification as an outline while I implemented the feature myself. That hands-on work introduced some necessary friction.
+
+At the same time you have to be aware of the friction: _too much and you would lose speed, too little and you lose control._
+
+A pain point I noticed early in both projects was re-installing deps frequently. I had to `npm install` after each agent change and vice versa. The agent's sandbox machine was on a different architecture than the host machine and some deps were built (native deps). This is unnecessary friction.
+
+The solution for me was to create a middle-ground environment that was shared between me and the agent. One place to install everything, to test and live-test. Docker sbx images can include their own Docker daemon. I had the fundamentals in place but just needed some guidance/vocabulary for the agent.
+
+### Enter Cowork Mode
+
+I [created a skill](https://github.com/geut/cowork-mode-skill) to manage this new environment from the agent side and instruct them to run tests from there and to use volumes to pick up live changes easily.
+
+I called this _"cowork mode"_. You and the agent collaborating on a task.
+
+This cowork workflow worked well enough for a solo dev or local work. With the cowork environment in place, I removed the native deps friction. I was also able to test complex scenarios like manually testing a WebRTC app with its own signaling server with two devices on my local network. I was able to do this with this Docker-in-Docker approach.
+
+The final addition was the Pi package: [pi-cowork-mode](https://github.com/geut/pi-cowork-mode). The extension allows Pi to use the cowork skills as tools. It also provides some handy commands to interact with the coworking space.
+
+`/cowork {up|status|down|test|logs|shell}`
+
+It also integrates with Pi UI to show the coworking space status and the latest test results.
+
+## Two Paths Forward
+
+The current setup is simple and perhaps even _rudimentary_. It is heavily based on Docker as the main containerization mechanism and it's heavy. 
+
+But Docker is a de facto standard, devs are quite familiar with it and in this case we are using the newest `sbx` which is aimed to be used with agents. 
+
+Having said that, I'd like to continue exploring and evolving the current workflow. There are two lines that I'm interested in:
+
+1. Cloud Agents that work like Vercel live previews. I'd like to have this remote, shared environment where agents and developers can collaborate around a pull request. Should it be disposable or durable? Which agent artifacts are actually useful to preserve (eg: reasoning traces)?
+2. A lightweight sandbox. The current setup is heavily tied to Docker. I'd like to explore more with MicroVMs. Perhaps use [Gondolin](https://github.com/earendil-works/gondolin) from the team behind Pi.
+
+What is interesting is that there is some connection between these two lines. A lightweight sandbox could be not only lean but faster and adequate to bootstrap in the cloud.
+
+<div class="mt-4 lg:mt-6 -mb-2 bg-secondary-400 border-l-accent border-l-4 dark:bg-primary-400 text-foreground font-mono rounded-xs px-4 py-2">
+  Hiring software engineers? This is how I work today. If that fits what you're
+  building, <a href="mailto:diego@geutstudio.com" class="underline hover:font-bold underline-offset-4 ">reach out</a>.
+</div>
+
+## Closing Thoughts
+
+This setup will continue to evolve, but one principle already feels durable: the tools matter less than the environment and feedback loops connecting them.
+
+My next step is to make that shared environment lighter, easier to bootstrap, and collaborative beyond a single developer and agent.
+
+Feedback is welcome.
+
+Related artifacts:
+- [cowork-mode-skill](https://github.com/geut/cowork-mode-skill)
+- [pi-cowork-mode](https://github.com/geut/pi-cowork-mode)
+- [sbx-shell-pi](https://github.com/geut/sbx-shell-pi)
+- [skills](https://github.com/mattpocock/skills)

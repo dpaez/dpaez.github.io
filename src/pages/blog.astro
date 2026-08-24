@@ -27,7 +27,7 @@ const posts = await getCollection('blog', ({ data }: { data: { draft: boolean } 
         </p>
       </div>
       
-      <BlogList client:load posts={posts} />
+      <BlogList posts={posts} />
     </div>
   </main>
 </Layout>
