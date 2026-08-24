@@ -4,5 +4,8 @@
   "editor.formatOnSaveMode": "file",
   "editor.codeActionsOnSave": {
     "source.fixAll": "always"
+  },
+  "[mdx]": {
+    "editor.formatOnSave": false
   }
 }
